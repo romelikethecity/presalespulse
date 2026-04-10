@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500&family=Source+Code+Pro:wght@400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1200px;
+    height: 630px;
+    background: #111111;
+    font-family: 'Sora', sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Grid overlay */
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+  }
+
+  /* Radial glow */
+  body::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(30,58,95,0.12) 0%, transparent 70%);
+    z-index: 0;
+  }
+
+  .top-bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 60px 0;
+  }
+
+  .logo-group {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo-text {
+    font-family: 'Sora', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #F0F0F0;
+  }
+
+  .logo-text span {
+    color: #93C5FD;
+  }
+
+  .domain {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 14px;
+    color: #666;
+    letter-spacing: 1px;
+  }
+
+  .content-area {
+    position: relative;
+    z-index: 1;
+    padding: 80px 60px 0;
+  }
+
+  .title {
+    font-family: 'Sora', sans-serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.15;
+    max-width: 900px;
+  }
+
+  .subtitle {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #999;
+    margin-top: 20px;
+    max-width: 800px;
+    line-height: 1.5;
+  }
+
+  .accent-bar {
+    width: 80px;
+    height: 4px;
+    background: #1E3A5F;
+    border-radius: 2px;
+    margin-top: 32px;
+  }
+
+  /* Decorative play triangle watermark */
+  .watermark {
+    position: absolute;
+    bottom: 40px;
+    right: 60px;
+    z-index: 0;
+    opacity: 0.04;
+  }
+</style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="logo-group">
+      <svg width="40" height="40" viewBox="0 0 80 80">
+        <rect width="80" height="80" rx="16" fill="#1E3A5F"/>
+        <polygon points="32,24 32,56 58,40" fill="white"/>
+      </svg>
+      <div class="logo-text">PreSales <span>Pulse</span></div>
+    </div>
+    <div class="domain">PRESALESPULSE.COM</div>
+  </div>
+
+  <div class="content-area">
+    <div class="title">{{TITLE}}</div>
+    <div class="subtitle">{{SUBTITLE}}</div>
+    <div class="accent-bar"></div>
+  </div>
+
+  <div class="watermark">
+    <svg width="200" height="200" viewBox="0 0 200 200">
+      <polygon points="40,20 40,180 180,100" fill="white"/>
+    </svg>
+  </div>
+</body>
+</html>

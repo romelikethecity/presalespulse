@@ -1,0 +1,129 @@
+/* ============================================================
+   PreSales Pulse — Design Tokens
+   Direction: Navy Command
+   Generated: 2026-04-10
+   ============================================================ */
+
+:root {
+  /* ---- Backgrounds ---- */
+  --psp-bg-primary: #FAFAFA;
+  --psp-bg-surface: #FFFFFF;
+  --psp-bg-tinted: #EFF6FF;
+  --psp-bg-dark: #111111;
+  --psp-bg-dark-surface: #1A1A1A;
+
+  /* ---- Accent: Navy Command ---- */
+  --psp-accent: #1E3A5F;
+  --psp-accent-hover: #2563EB;
+  --psp-accent-active: #172554;
+  --psp-accent-subtle: #EFF6FF;
+  --psp-accent-rgb: 30, 58, 95;           /* for rgba() usage */
+
+  /* ---- Text ---- */
+  --psp-text-primary: #111111;
+  --psp-text-secondary: #6B6B6B;
+  --psp-text-tertiary: #9B9B9B;
+  --psp-text-inverse: #F0F0F0;
+  --psp-text-on-accent: #FFFFFF;
+
+  /* ---- Borders & Dividers ---- */
+  --psp-border: #E5E5E5;
+  --psp-border-subtle: #F0F0F0;
+  --psp-border-strong: #D4D4D4;
+
+  /* ---- Typography ---- */
+  --psp-font-heading: 'Sora', system-ui, -apple-system, sans-serif;
+  --psp-font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --psp-font-mono: 'Source Code Pro', 'Menlo', 'Monaco', monospace;
+
+  /* ---- Font Sizes (fluid) ---- */
+  --psp-text-xs: clamp(0.6875rem, 0.65rem + 0.15vw, 0.75rem);    /* 11-12px */
+  --psp-text-sm: clamp(0.8125rem, 0.78rem + 0.15vw, 0.875rem);   /* 13-14px */
+  --psp-text-base: clamp(0.9375rem, 0.9rem + 0.15vw, 1rem);      /* 15-16px */
+  --psp-text-lg: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);      /* 18-20px */
+  --psp-text-xl: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);       /* 22-28px */
+  --psp-text-2xl: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);          /* 28-40px */
+  --psp-text-3xl: clamp(2.25rem, 1.8rem + 1.5vw, 3.5rem);        /* 36-56px */
+
+  /* ---- Font Weights ---- */
+  --psp-weight-normal: 400;
+  --psp-weight-medium: 500;
+  --psp-weight-semibold: 600;
+  --psp-weight-bold: 700;
+  --psp-weight-extrabold: 800;
+
+  /* ---- Spacing Scale ---- */
+  --psp-space-1: 0.25rem;   /* 4px */
+  --psp-space-2: 0.5rem;    /* 8px */
+  --psp-space-3: 0.75rem;   /* 12px */
+  --psp-space-4: 1rem;      /* 16px */
+  --psp-space-6: 1.5rem;    /* 24px */
+  --psp-space-8: 2rem;      /* 32px */
+  --psp-space-12: 3rem;     /* 48px */
+  --psp-space-16: 4rem;     /* 64px */
+  --psp-space-24: 6rem;     /* 96px */
+
+  /* ---- Radius ---- */
+  --psp-radius-sm: 4px;
+  --psp-radius-md: 8px;
+  --psp-radius-lg: 12px;
+  --psp-radius-xl: 16px;
+  --psp-radius-full: 9999px;
+
+  /* ---- Shadows ---- */
+  --psp-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --psp-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --psp-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --psp-shadow-accent: 0 4px 16px rgba(var(--psp-accent-rgb), 0.25);
+
+  /* ---- Transitions ---- */
+  --psp-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --psp-duration-fast: 150ms;
+  --psp-duration-normal: 250ms;
+  --psp-duration-slow: 400ms;
+
+  /* ---- Z-Index ---- */
+  --psp-z-dropdown: 100;
+  --psp-z-sticky: 200;
+  --psp-z-modal: 300;
+  --psp-z-toast: 400;
+}
+
+/* ---- Dark Mode Override ---- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --psp-bg-primary: #0F172A;
+    --psp-bg-surface: #1E293B;
+    --psp-bg-tinted: #1E293B;
+    --psp-text-primary: #F1F5F9;
+    --psp-text-secondary: #94A3B8;
+    --psp-text-tertiary: #64748B;
+    --psp-text-inverse: #0F172A;
+    --psp-accent: #2563EB;
+    --psp-accent-hover: #3B82F6;
+    --psp-accent-rgb: 37, 99, 235;
+    --psp-border: #334155;
+    --psp-border-subtle: #1E293B;
+    --psp-border-strong: #475569;
+    --psp-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --psp-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --psp-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* ---- Utility: force dark on specific containers ---- */
+[data-theme="dark"] {
+  --psp-bg-primary: #0F172A;
+  --psp-bg-surface: #1E293B;
+  --psp-bg-tinted: #1E293B;
+  --psp-text-primary: #F1F5F9;
+  --psp-text-secondary: #94A3B8;
+  --psp-text-tertiary: #64748B;
+  --psp-text-inverse: #0F172A;
+  --psp-accent: #2563EB;
+  --psp-accent-hover: #3B82F6;
+  --psp-accent-rgb: 37, 99, 235;
+  --psp-border: #334155;
+  --psp-border-subtle: #1E293B;
+  --psp-border-strong: #475569;
+}

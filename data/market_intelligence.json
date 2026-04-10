@@ -1,0 +1,16 @@
+{
+  "last_updated": "2026-04-10",
+  "total_se_jobs": 4250,
+  "total_tools_reviewed": 30,
+  "top_hiring_companies": [
+    "Salesforce", "ServiceNow", "Datadog", "Snowflake", "CrowdStrike",
+    "Palo Alto Networks", "MongoDB", "HashiCorp", "Confluent", "Databricks"
+  ],
+  "tool_mention_counts": {
+    "Salesforce": 892, "Gong": 445, "Consensus": 234, "HubSpot": 198,
+    "Navattic": 156, "PandaDoc": 142, "Lucidchart": 128, "Miro": 115
+  },
+  "pct_remote": 34,
+  "median_salary": 155000,
+  "yoy_job_growth_pct": 18
+}

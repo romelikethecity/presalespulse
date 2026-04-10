@@ -1,0 +1,37 @@
+{
+  "last_updated": "2026-04-10",
+  "source": "PreSales Pulse Market Analysis 2026",
+  "by_seniority": {
+    "junior": {"min": 95000, "max": 135000, "median": 115000, "sample": 42},
+    "mid": {"min": 130000, "max": 175000, "median": 155000, "sample": 86},
+    "senior": {"min": 160000, "max": 210000, "median": 185000, "sample": 94},
+    "principal": {"min": 190000, "max": 250000, "median": 220000, "sample": 38},
+    "manager": {"min": 170000, "max": 230000, "median": 200000, "sample": 45},
+    "director": {"min": 210000, "max": 300000, "median": 255000, "sample": 22}
+  },
+  "by_location": {
+    "san-francisco": {"min": 165000, "max": 245000, "median": 195000, "sample": 58, "label": "San Francisco"},
+    "new-york": {"min": 155000, "max": 235000, "median": 185000, "sample": 52, "label": "New York City"},
+    "austin": {"min": 135000, "max": 200000, "median": 165000, "sample": 34, "label": "Austin"},
+    "seattle": {"min": 160000, "max": 240000, "median": 190000, "sample": 41, "label": "Seattle"},
+    "boston": {"min": 150000, "max": 225000, "median": 180000, "sample": 29, "label": "Boston"},
+    "denver": {"min": 140000, "max": 205000, "median": 170000, "sample": 25, "label": "Denver"},
+    "chicago": {"min": 140000, "max": 210000, "median": 170000, "sample": 31, "label": "Chicago"},
+    "los-angeles": {"min": 150000, "max": 230000, "median": 180000, "sample": 36, "label": "Los Angeles"},
+    "miami": {"min": 130000, "max": 195000, "median": 160000, "sample": 18, "label": "Miami"},
+    "atlanta": {"min": 130000, "max": 200000, "median": 162000, "sample": 22, "label": "Atlanta"},
+    "portland": {"min": 135000, "max": 200000, "median": 165000, "sample": 15, "label": "Portland"},
+    "washington-dc": {"min": 150000, "max": 225000, "median": 182000, "sample": 27, "label": "Washington DC"},
+    "dallas": {"min": 135000, "max": 205000, "median": 168000, "sample": 20, "label": "Dallas"},
+    "san-diego": {"min": 145000, "max": 215000, "median": 175000, "sample": 16, "label": "San Diego"},
+    "remote": {"min": 130000, "max": 210000, "median": 168000, "sample": 72, "label": "Remote"}
+  },
+  "by_company_stage": {
+    "seed": {"min": 100000, "max": 155000, "median": 125000, "sample": 18, "label": "Seed Stage"},
+    "series-a": {"min": 120000, "max": 175000, "median": 145000, "sample": 32, "label": "Series A"},
+    "series-b": {"min": 140000, "max": 200000, "median": 168000, "sample": 45, "label": "Series B"},
+    "growth": {"min": 155000, "max": 225000, "median": 185000, "sample": 64, "label": "Growth Stage"},
+    "enterprise": {"min": 160000, "max": 240000, "median": 195000, "sample": 89, "label": "Enterprise"}
+  },
+  "overall": {"min": 95000, "max": 300000, "median": 155000, "total_sample": 327}
+}
