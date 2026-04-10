@@ -751,7 +751,7 @@ GLOSSARY_TERMS = [
 <h2>Why It Matters for SEs</h2>
 <p>Title awareness matters for job searches and career navigation. If you search only for "Solutions Engineer" openings, you miss every company that calls the same role "Solution Consultant," "Pre-Sales Consultant," "Technical Consultant," or "Sales Engineer." The function is identical. The title varies by company culture.</p>
 
-<p>The title can also affect how internal teams perceive you. "Consultant" carries connotations of advisory and strategy. "Engineer" carries connotations of technical depth. Neither is wrong. Knowing how your title is perceived helps you frame your contributions in language that resonates with leadership.</p>
+<p>The title can also affect how internal teams perceive you. "Consultant" carries connotations of advisory and strategy. "Engineer" carries connotations of technical depth. Neither is wrong. Knowing how your title is perceived helps you frame your contributions in language that lands with leadership.</p>
 
 <h2>How SEs Use This</h2>
 <p>When job searching, search for all common title variants: Solutions Engineer, Solution Consultant, Sales Engineer, Pre-Sales Engineer, Pre-Sales Consultant, Technical Consultant, and <a href="/glossary/pre-sales/">Pre-Sales</a> Specialist. Set up alerts for all of them. The company you want may use a title you are not searching for.</p>

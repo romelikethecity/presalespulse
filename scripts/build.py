@@ -155,7 +155,7 @@ SALARY_BY_SENIORITY = {
         "sample": 94,
         "context": [
             "Senior Solutions Engineers are the backbone of enterprise sales teams. With 5 to 8 years of experience, you're handling the largest, most complex deals in the pipeline. That means multi-stakeholder technical evaluations, extended POCs with custom infrastructure, competitive bake-offs against incumbent vendors, and deep integration architecture discussions with the prospect's engineering team. You're also mentoring junior SEs, contributing to product feedback loops, and often serving as the technical authority in executive briefings.",
-            "The $160K to $210K salary range with a $185K median reflects the market value of an SE who can independently run enterprise deals. At this level, you're expected to walk into a room full of CTOs and VPs of Engineering and hold your own. You know the competitive field cold. You can whiteboard a solution architecture on the spot. You've seen enough failed POCs to know how to structure one that actually proves value. These aren't skills you learn from training programs; they come from hundreds of deals and years of pattern recognition.",
+            "The $160K to $210K salary range with a $185K median reflects the market value of an SE who can independently run enterprise deals. At this level, you're expected to walk into a room full of CTOs and VPs of Engineering and hold your own. You know the competitive field cold. You can whiteboard a solution architecture on the spot. You've seen enough failed POCs to know how to structure one that proves value. These aren't skills you learn from training programs; they come from hundreds of deals and years of pattern recognition.",
             "Senior SEs face a fork in the road: stay on the individual contributor track (which leads to Principal/Staff SE) or move into management. Both paths have comparable compensation, but the work is fundamentally different. IC seniors spend most of their time on deals and technical strategy. Managers spend most of their time on team building, forecasting, and cross-functional alignment. The right choice depends on whether you get more energy from solving technical problems or from developing people. There's no wrong answer, but you should make the choice deliberately rather than defaulting into management because it seems like the expected next step.",
         ],
         "drivers": [
@@ -194,7 +194,7 @@ SALARY_BY_SENIORITY = {
         "context": [
             "SE Managers lead teams of 4 to 10 Solutions Engineers and sit at the intersection of sales leadership and technical strategy. The job is fundamentally different from being an individual contributor SE. You're responsible for hiring, coaching, forecasting SE capacity, managing deal assignments, running team meetings, and coordinating with sales leadership on pipeline strategy. The best SE Managers spend 30 to 40% of their time on active deals (coaching SEs through complex situations) and 60 to 70% on team operations and development.",
             "Compensation for SE Managers sits at $170K to $230K base with a $200K median. The range is wider than senior SE comp because management roles vary enormously by company. A manager running a team of 4 SEs at a mid-market company is doing very different work than one managing 10 SEs across multiple product lines at an enterprise vendor. The pay reflects that scope difference. Companies that value the SE function and give managers real authority (hiring, firing, comp decisions, deal strategy) pay at the top of the range. Companies where the SE Manager is essentially a team lead with limited authority pay at the lower end.",
-            "The transition from senior SE to SE Manager is the most common career move at the 5 to 8 year mark, but it's not always the right one. Managers who succeed are those who genuinely enjoy developing other people's careers, who can delegate deals they'd rather run themselves, and who find satisfaction in team metrics rather than individual wins. The ones who struggle are strong individual contributors who took the promotion for the title and comp bump but miss the deal-level work. If you're considering the move, shadow an SE Manager for a quarter before committing. The job is less glamorous and more operational than most people expect.",
+            "The transition from senior SE to SE Manager is the most common career move at the 5 to 8 year mark, but it's not always the right one. Managers who succeed are those who find real satisfaction in developing other people's careers, who can delegate deals they'd rather run themselves, and who find satisfaction in team metrics rather than individual wins. The ones who struggle are strong individual contributors who took the promotion for the title and comp bump but miss the deal-level work. If you're considering the move, shadow an SE Manager for a quarter before committing. The job is less glamorous and more operational than most people expect.",
         ],
         "drivers": [
             "Team size directly correlates with comp: managers of 8 to 10 SEs earn 10 to 15% more than those managing 4 to 5",
@@ -410,7 +410,7 @@ SALARY_BY_LOCATION = {
             "For SEs relocating from coastal markets, Atlanta provides a meaningful quality-of-life upgrade. A $162K salary in Atlanta buys substantially more housing, shorter commutes, and lower overall costs than equivalent comp in SF, NYC, or LA. The trade-off is a smaller SE community and fewer local tech events compared to top-tier markets. The rapid growth of Atlanta's tech sector is closing that gap, and the city should be a top-5 SE market within the next 3 to 5 years.",
         ],
         "drivers": [
-            "Cost of living 25 to 35% below coastal cities makes Atlanta comp extremely competitive on a purchasing power basis",
+            "Cost of living 25 to 35% below coastal cities makes Atlanta comp highly competitive on a purchasing power basis",
             "Georgia's 5.49% flat income tax is moderate and straightforward",
             "Salesforce's southeastern hub and SalesLoft's HQ anchor the local SE hiring market",
             "Healthcare IT and fintech companies in the metro area pay at the top of the Atlanta range",
@@ -766,7 +766,7 @@ SALARY_COMPARISONS = {
         "role_a_salary": {"min": 95000, "max": 300000, "median": 155000},
         "role_b_salary": {"min": 85000, "max": 160000, "median": 118000},
         "context": [
-            "Solutions Engineers and Implementation Managers are the pre-sale and post-sale mirror images of each other. SEs convince prospects the product will work for their use case. Implementation Managers make it actually work after the deal closes. The $37K median gap ($155K versus $118K) is one of the largest in this comparison set and reflects the fundamental difference between revenue generation (SE) and service delivery (Implementation).",
+            "Solutions Engineers and Implementation Managers are the pre-sale and post-sale mirror images of each other. SEs convince prospects the product will work for their use case. Implementation Managers make it work after the deal closes. The $37K median gap ($155K versus $118K) is one of the largest in this comparison set and reflects the fundamental difference between revenue generation (SE) and service delivery (Implementation).",
             "Implementation Managers own the post-sale deployment: onboarding projects, data migration, integration configuration, user training, and time-to-value tracking. The work requires project management skills, technical understanding, and the ability to manage customer expectations when things don't go perfectly (which they never do). Many Implementation Managers come from consulting backgrounds, where the project-based work structure is similar.",
             "The SE and Implementation Manager roles share an important dynamic: what the SE promises during the sales cycle directly affects what the Implementation Manager has to deliver. In well-run organizations, SEs and Implementation Managers have regular syncs to ensure pre-sale commitments are realistic. In poorly-run organizations, Implementation Managers are left cleaning up over-promises, which creates friction and churn risk. If you're evaluating either role at a company, ask about the SE-to-Implementation handoff process. It tells you a lot about the organization's maturity.",
         ],
@@ -896,11 +896,25 @@ def salary_range_bar_html(data):
 </div>'''
 
 
+def calculator_cta_html():
+    """Inline CTA linking to the salary calculator from salary detail pages."""
+    return '''<div class="calculator-cta" style="background: var(--psp-accent-subtle); padding: var(--psp-space-6); border-radius: var(--psp-radius-lg); margin: var(--psp-space-8) 0; text-align: center;">
+    <h3>Calculate Your Market Rate</h3>
+    <p>See how your compensation compares to the market based on your seniority, location, and company stage.</p>
+    <a href="/salary/calculator/" class="btn btn--primary">Calculate My Market Rate</a>
+</div>'''
+
+
 def salary_related_links(current_slug, current_type):
     """Generate related salary page links."""
+    # Add calculator CTA above related links (skip on the calculator page itself)
+    calc_cta = calculator_cta_html() if current_slug != "calculator" else ""
+
     links = []
     if current_slug != "index":
         links.append(("/salary/", "Salary Index"))
+    if current_slug != "calculator":
+        links.append(("/salary/calculator/", "Salary Calculator"))
     links.append(("/salary/methodology/", "Data Methodology"))
 
     if current_type != "seniority":
@@ -927,7 +941,8 @@ def salary_related_links(current_slug, current_type):
     for href, label in links:
         items += f'<a href="{href}" class="related-link-card">{label}</a>\n'
 
-    return f'''<section class="related-links">
+    return f'''{calc_cta}
+<section class="related-links">
     <h2>Related Salary Data</h2>
     <div class="related-links-grid">
         {items}

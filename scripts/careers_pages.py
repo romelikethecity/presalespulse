@@ -152,7 +152,7 @@ CAREER_GUIDES = [
     <p>Asking the right questions before showing anything is arguably the most impactful SE skill. Technical discovery uncovers the information that makes demos relevant, POCs successful, and deals winnable. SEs who shortcut discovery and lead with generic demos have lower win rates across every company and product category. Our <a href="/careers/discovery-call-framework/">discovery call framework</a> covers this in depth.</p>
 
     <h3>Empathy and Listening</h3>
-    <p>The best SEs are genuinely curious about how their customers work. They listen more than they talk in discovery. They ask follow-up questions that show they understood the answer. They remember details from previous conversations. This isn't a soft skill. It's the foundation of trust-building that determines whether a technical buyer becomes your internal champion or remains skeptical.</p>
+    <p>The best SEs are deeply curious about how their customers work. They listen more than they talk in discovery. They ask follow-up questions that show they understood the answer. They remember details from previous conversations. This isn't a soft skill. It's the foundation of trust-building that determines whether a technical buyer becomes your internal champion or remains skeptical.</p>
 
     <h2>Compensation Overview</h2>
 
@@ -2160,7 +2160,7 @@ CAREER_GUIDES = [
         <li><strong>Week 3-4:</strong> Results presentation and decision meeting</li>
     </ul>
 
-    <p>For extremely complex products or large enterprises, extend to 6 weeks. Beyond 6 weeks, scope is too broad and needs to be narrowed. A 6-week POC with a clear end date is fine. An open-ended evaluation with no timeline is not a POC. It's a free trial that you're managing.</p>
+    <p>For highly complex products or large enterprises, extend to 6 weeks. Beyond 6 weeks, scope is too broad and needs to be narrowed. A 6-week POC with a clear end date is fine. An open-ended evaluation with no timeline is not a POC. It's a free trial that you're managing.</p>
 
     <p>For the discovery that precedes POC scoping, see our <a href="/careers/discovery-call-framework/">discovery call framework</a>. For how POC skills are evaluated in interviews, see our <a href="/careers/se-interview-questions/">interview questions guide</a>.</p>
 """,

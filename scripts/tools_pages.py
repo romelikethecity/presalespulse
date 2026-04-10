@@ -13,6 +13,24 @@ from templates import (get_page_wrapper, write_page, get_breadcrumb_schema,
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
 
 
+def pad_description(desc, target_min=150, target_max=158):
+    """Ensure description is within 150-158 chars by appending filler."""
+    suffixes = [" Updated weekly.", " Independent.", " Free.", " No ads."]
+    used = set()
+    for suffix in suffixes:
+        if target_min <= len(desc) <= target_max:
+            return desc
+        if suffix in used:
+            continue
+        new = desc + suffix
+        if len(new) <= target_max:
+            desc = new
+            used.add(suffix)
+    if len(desc) > target_max:
+        desc = desc[:target_max - 1].rstrip() + "."
+    return desc
+
+
 def stat_cards_html(cards):
     """Render a row of stat cards. cards = [(value, label), ...]"""
     items = ""
@@ -317,7 +335,7 @@ TOOL_PROFILES = {
         "overview": """<h2>Saleo Solves the Live Demo Data Problem</h2>
 <p>Every SE knows the pain of live demo data. Your staging environment has fake company names, broken sample data, and test records from three years ago that nobody cleaned up. You open the product in front of a prospect and the first thing they see is "Acme Corp" and "John Doe" instead of data that mirrors their world. Saleo fixes this by overlaying custom data on top of your live product during demos.</p>
 <p>The approach is clever. Saleo runs as a browser extension that intercepts and replaces data displayed in your product's UI. You are still demoing the real, live product with all its actual functionality. But the data on screen matches your prospect's industry, company size, and use case. Charts show realistic metrics. Names reflect real personas. Everything feels tailored without anyone touching the database or spinning up a custom environment.</p>
-<p>This is fundamentally different from other demo platforms. Consensus, Navattic, Walnut, and Demostack all create separate demo artifacts. Saleo enhances the live product. That means you get the authenticity of a live demo (everything actually works, clicks respond, data processes) combined with the personalization of a customized environment. For SEs who prefer live demos over recorded or captured alternatives, Saleo is the only tool that makes personalization possible without sandbox prep.</p>
+<p>This is fundamentally different from other demo platforms. Consensus, Navattic, Walnut, and Demostack all create separate demo artifacts. Saleo improves the live product. That means you get the authenticity of a live demo (everything works, clicks respond, data processes) combined with the personalization of a customized environment. For SEs who prefer live demos over recorded or captured alternatives, Saleo is the only tool that makes personalization possible without sandbox prep.</p>
 <p>The limitation is clear: Saleo only works during live demos. It does not produce shareable, asynchronous demo content like Consensus or Navattic. If your sales cycle depends on buyers exploring demos on their own time, Saleo does not cover that use case. But for the live demo itself, nothing in the market matches the experience of showing a real product with perfectly tailored data. Saleo has 45 mentions in SE job postings, reflecting strong adoption among teams that prioritize live demo quality over async demo distribution.</p>""",
         "pros": [
             "Overlays custom data on your live product (not a separate demo environment)",
@@ -365,8 +383,8 @@ TOOL_PROFILES = {
 <p>With 67 mentions in SE job postings, Arcade has fast-growing adoption driven by its free tier and ease of use. The platform is popular with SEs at PLG companies who need to produce high volumes of product content quickly. It is also used by SEs on small teams who cannot justify the cost of an enterprise demo platform but still want better than screen recordings and slide decks.</p>""",
         "pros": [
             "Fastest demo creation in the category (5&#8209;15 minutes per tour)",
-            "Free tier is genuinely useful for individual SEs",
-            "Extremely low learning curve, productive in under an hour",
+            "Free tier is practical and useful for individual SEs",
+            "Near-zero learning curve, productive in under an hour",
             "Great for top-of-funnel content, sales enablement, and outbound sequences",
             "Embeddable anywhere (websites, emails, Notion docs, Slack messages)",
         ],
@@ -492,7 +510,7 @@ TOOL_PROFILES = {
         "rating": {"value": 4.5, "count": 40},
         "overview": """<h2>Instruqt Is Built for Developer-Focused Sales</h2>
 <p>Instruqt is not a demo platform in the traditional sense. It creates hands-on, interactive lab environments where prospects can run real code, deploy real infrastructure, and interact with your product in a sandboxed environment. If you sell developer tools, infrastructure software, or platform products, Instruqt lets prospects experience your product by doing, not watching.</p>
-<p>The platform provisions containerized environments with pre-configured infrastructure, code editors, terminals, and your product installed and ready. Prospects follow guided tracks (step-by-step instructions) or explore freely. SEs can monitor progress in real time, seeing which steps prospects complete and where they get stuck. For technical sales cycles where the buyer's primary question is "does this actually work in my environment?", Instruqt answers it with hands-on proof.</p>
+<p>The platform provisions containerized environments with pre-configured infrastructure, code editors, terminals, and your product installed and ready. Prospects follow guided tracks (step-by-step instructions) or explore freely. SEs can monitor progress in real time, seeing which steps prospects complete and where they get stuck. For technical sales cycles where the buyer's primary question is "does this work in my environment?", Instruqt answers it with hands-on proof.</p>
 <p>Instruqt is not for every SE team. It is specifically designed for technical products sold to developers, DevOps teams, and infrastructure engineers. If your product has a UI-heavy workflow that non-technical buyers evaluate, standard demo platforms (Consensus, Navattic, Walnut) are better fits. Instruqt shines when the buyer wants to write code, run commands, or deploy infrastructure during the evaluation.</p>
 <p>With 28 mentions in SE job postings, Instruqt's adoption is concentrated in infrastructure, security, and developer tools companies. HashiCorp, Datadog, and similar vendors use Instruqt for both pre-sales and post-sales education. The pricing is custom enterprise, reflecting the infrastructure costs of provisioning on-demand lab environments. Expect significant investment, but for the right product category, the conversion lift from hands-on evaluation justifies the spend.</p>""",
         "pros": [
@@ -1020,12 +1038,12 @@ TOOL_PROFILES = {
         "rating": {"value": 4.6, "count": 25},
         "overview": """<h2>Cuvama Flips the Value Selling Script</h2>
 <p>Cuvama takes a different approach to value selling than Ecosystems or Mediafly. Instead of starting with your product's ROI and working backward to justify the purchase, Cuvama starts with the customer's pain and works forward to quantify the cost of inaction. The philosophy is discovery-led rather than pitch-led. SEs use Cuvama to facilitate value discovery conversations that uncover and quantify the prospect's specific challenges before any ROI calculation happens.</p>
-<p>The platform structures discovery around pain points rather than product features. SEs ask questions about the prospect's current challenges, and Cuvama quantifies the business impact of each challenge. Only after the pain is documented and quantified does the conversation shift to how your solution addresses it. This approach resonates with sophisticated enterprise buyers who see through premature ROI claims. "Your problem costs you $2M per year" is a more credible starting point than "our product delivers $3M in value."</p>
+<p>The platform structures discovery around pain points rather than product features. SEs ask questions about the prospect's current challenges, and Cuvama quantifies the business impact of each challenge. Only after the pain is documented and quantified does the conversation shift to how your solution addresses it. This approach works with sophisticated enterprise buyers who see through premature ROI claims. "Your problem costs you $2M per year" is a more credible starting point than "our product delivers $3M in value."</p>
 <p>Cuvama is the newest and smallest tool in this category, with just 8 mentions in SE job postings and 25 reviews. The 4.6 rating is strong but based on a small sample. The platform is still building its market presence. Early adopters are enterprise SE teams that have adopted value selling methodologies (MEDDPICC, Value Selling Framework, Sandler) and want tooling that operationalizes the discovery portion of those methodologies.</p>
 <p>The risk with Cuvama is maturity. The platform is young, the company is small, and the feature set is still developing. If discovery-led value selling aligns with your sales methodology and you want purpose-built tooling, Cuvama is the most focused option. If you want a proven platform with a large user base, Ecosystems is the safer choice. Cuvama is a bet on an approach, not a bet on an established platform.</p>""",
         "pros": [
             "Discovery-led approach focuses on customer pain before product pitch",
-            "Quantifies the cost of inaction, which resonates with sophisticated buyers",
+            "Quantifies the cost of inaction, which lands with sophisticated buyers",
             "Aligns well with MEDDPICC and other enterprise sales methodologies",
             "Structures value conversations so they are consistent across the SE team",
             "Highest satisfaction rating in the value selling category (4.6/5)",
@@ -1505,13 +1523,13 @@ COMPARISONS = [
         "tool_b": "Walnut",
         "title": "Saleo vs Walnut: Live Demo vs Captured Demo",
         "body": """<h2>Fundamentally Different Architectures</h2>
-<p>Saleo and Walnut both personalize demo experiences, but they work in fundamentally different ways. Saleo overlays custom data on your live, running product. Walnut captures your product and creates a separate demo artifact. Saleo enhances live demos. Walnut creates shareable, asynchronous demos. They solve different problems.</p>
+<p>Saleo and Walnut both personalize demo experiences, but they work in fundamentally different ways. Saleo overlays custom data on your live, running product. Walnut captures your product and creates a separate demo artifact. Saleo improves live demos. Walnut creates shareable, asynchronous demos. They solve different problems.</p>
 
 <h2>Live vs Async</h2>
 <p>Saleo only works during live demos. The SE opens the real product, Saleo overlays customized data, and the demo proceeds with full product functionality. After the call, the customized view does not persist as a shareable artifact. Walnut creates a persistent demo that can be shared via link. Prospects can explore it on their own time, forward it to colleagues, and revisit it days later.</p>
 
 <h2>Fidelity</h2>
-<p>Saleo demos have higher fidelity because you are in the real product. Everything works. Data processes. APIs respond. Workflows complete. Walnut demos are frontend snapshots. They look like the product but do not execute backend logic. For demos where prospects ask "does this actually work?", Saleo answers with proof. Walnut shows what it looks like.</p>
+<p>Saleo demos have higher fidelity because you are in the real product. Everything works. Data processes. APIs respond. Workflows complete. Walnut demos are frontend snapshots. They look like the product but do not execute backend logic. For demos where prospects ask "does this work?", Saleo answers with proof. Walnut shows what it looks like.</p>
 
 <h2>SE Workflow Impact</h2>
 <p>Saleo does not reduce demo volume. The SE still runs every demo live. Saleo reduces prep time for live demos by eliminating sandbox data setup. Walnut can reduce demo volume by enabling asynchronous, self-serve product exploration. If your bottleneck is too many demo requests, Walnut helps more. If your bottleneck is demo prep time for live calls, Saleo helps more.</p>
@@ -1869,7 +1887,7 @@ ROUNDUPS = [
             ("Demostack", "Best for Demo Fidelity", "Clones your product frontend for functional, data-loaded demos. Expensive but the most realistic demo experience. 89 job mentions, 4.3 rating."),
             ("Reprise", "Best for Flexibility", "Dual creation modes (screen capture and live overlay) cover both lightweight and deep demos. 78 job mentions, 4.4 rating."),
             ("Saleo", "Best for Live Demos", "Overlays custom data on your live product during demos. The only tool that personalizes the real product in real time. 45 job mentions, 4.6 rating."),
-            ("Arcade", "Best Free Option", "Fastest demo creation in the category. Free tier is genuinely useful. Perfect for SEs starting with interactive demos. 67 job mentions, 4.7 rating."),
+            ("Arcade", "Best Free Option", "Fastest demo creation in the category. Free tier is practical and useful. Perfect for SEs starting with interactive demos. 67 job mentions, 4.7 rating."),
             ("HowdyGo", "Best Budget Option", "HTML-capture demos at $99/mo. Highest satisfaction rating (4.8) in the category. 18 job mentions."),
         ],
     },
@@ -1894,7 +1912,7 @@ ROUNDUPS = [
         "title": "Best Free Demo Tools for SEs in 2026",
         "h1": "Best Free Demo Tools for Solutions Engineers",
         "description": "Free and affordable demo tools for SEs. Arcade, Excalidraw, HubSpot, Miro, and Navattic reviewed.",
-        "intro": "You do not need a $50K budget to start building interactive demos. Several tools offer free tiers that are genuinely useful for SEs. Start here to prove the value of interactive demos to your leadership before requesting budget for an enterprise platform.",
+        "intro": "You do not need a $50K budget to start building interactive demos. Several tools offer free tiers that are practical and useful for SEs. Start here to prove the value of interactive demos to your leadership before requesting budget for an enterprise platform.",
         "tools": ["Arcade", "Excalidraw", "HubSpot", "Miro", "Navattic"],
         "rankings": [
             ("Arcade", "Best Free Demo Builder", "Free tier supports unlimited tours. Build interactive product walkthroughs in 5 to 15 minutes. Perfect for outbound sequences and enablement content. 67 job mentions, 4.7 rating."),
@@ -2123,7 +2141,7 @@ ALTERNATIVES = [
             ("Can Arcade replace Walnut?",
              "For basic product tours and outbound content, yes. For personalized demos with prospect-specific data and branding, no. Arcade creates guided tours. Walnut creates customizable product replicas."),
             ("Which Walnut alternative is best for live demos?",
-             "Saleo. It overlays custom data on your live, running product. Walnut creates captured demos. Saleo enhances live demos. They solve different problems."),
+             "Saleo. It overlays custom data on your live, running product. Walnut creates captured demos. Saleo improves live demos. They solve different problems."),
         ],
     },
     {
@@ -2470,9 +2488,14 @@ def build_tools_review_pages(market_data):
 
         extra_head = bc_schema + tool_schema + get_faq_schema(faq_pairs)
         title_name = name if len(name) < 20 else name[:20]
+        rating_val = profile.get("rating", {}).get("value", "")
+        rating_str = f", {rating_val}/5 rating" if rating_val else ""
+        pricing_short = profile.get("pricing", "").split(",")[0] if profile.get("pricing") else "custom pricing"
+        review_desc = f"Independent {name} review for SEs. Pricing from {pricing_short}{rating_str}. Honest pros, cons, and SE-specific use cases for {CURRENT_YEAR}."
+        review_desc = pad_description(review_desc)
         page = get_page_wrapper(
-            title=f"{title_name} Review: SE Platform Analysis (2026)",
-            description=f"{name} review for SEs. {profile['mentions']} job mentions. {profile.get('best_for', '')}",
+            title=f"{title_name} Review for SEs ({CURRENT_YEAR})",
+            description=review_desc,
             canonical_path=f"/tools/{slug}/",
             body_content=body,
             active_path="/tools/",

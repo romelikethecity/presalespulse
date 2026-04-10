@@ -69,7 +69,7 @@ def build_reports_index():
         </div>
         <div class="card">
             <h3>SE Tool Stack Report</h3>
-            <p>Which tools SE teams actually use, adoption rates by company size, satisfaction scores, and budget benchmarks. Covers demo platforms, RFP tools, conversation intelligence, and more.</p>
+            <p>Which tools SE teams use in practice, adoption rates by company size, satisfaction scores, and budget benchmarks. Covers demo platforms, RFP tools, conversation intelligence, and more.</p>
             <span class="tag">Coming Soon</span>
         </div>
         <div class="card">

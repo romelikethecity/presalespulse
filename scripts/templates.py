@@ -21,7 +21,14 @@ SKIP_OG = False
 def get_html_head(title, description, canonical_path, extra_head="", og_image="", robots="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"):
     """Generate complete <head> section."""
     canonical = f"{SITE_URL}{canonical_path}"
-    full_title = f"{title} - {SITE_NAME}" if title != SITE_NAME else SITE_NAME
+    # Only append site name suffix if total title stays <= 60 chars
+    candidate = f"{title} - {SITE_NAME}"
+    if title == SITE_NAME:
+        full_title = SITE_NAME
+    elif len(candidate) <= 60:
+        full_title = candidate
+    else:
+        full_title = title
 
     og_image_tags = ""
     twitter_image_tag = ""
