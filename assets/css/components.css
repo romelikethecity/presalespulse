@@ -206,14 +206,14 @@ h6 { font-size: var(--psp-text-sm); }
 /* ---- Newsletter CTA ---- */
 .newsletter-cta {
     background: var(--psp-bg-dark);
-    color: var(--psp-text-inverse);
+    color: #F0F0F0;
     border-radius: var(--psp-radius-lg);
     padding: var(--psp-space-12) var(--psp-space-8);
     text-align: center;
 }
 
 .newsletter-cta h2 {
-    color: var(--psp-text-inverse);
+    color: #F0F0F0;
 }
 
 .newsletter-cta p {
@@ -233,7 +233,7 @@ h6 { font-size: var(--psp-text-sm); }
     border-radius: var(--psp-radius-md);
     border: 1px solid rgba(255, 255, 255, 0.2);
     background: rgba(255, 255, 255, 0.1);
-    color: var(--psp-text-inverse);
+    color: #F0F0F0;
     font-family: var(--psp-font-body);
     font-size: var(--psp-text-base);
 }
