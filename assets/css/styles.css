@@ -315,10 +315,15 @@
     flex: 1;
     padding: var(--psp-space-3) var(--psp-space-4);
     border-radius: var(--psp-radius-md);
-    border: 1px solid var(--psp-border);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     font-family: var(--psp-font-body);
     font-size: var(--psp-text-base);
-    background: var(--psp-bg-surface);
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+}
+
+.hero-signup input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .hero-signup input:focus {
@@ -332,6 +337,57 @@
     margin: 0;
 }
 
+
+/* ---- Logo Strip (company credibility bar) ---- */
+.logo-strip {
+    padding: var(--psp-space-8) 0 var(--psp-space-4);
+    text-align: center;
+    border-bottom: 1px solid var(--psp-border-subtle);
+}
+
+.logo-strip-label {
+    font-size: var(--psp-text-xs);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--psp-text-secondary);
+    margin-bottom: var(--psp-space-4);
+    font-weight: var(--psp-weight-medium);
+}
+
+.logo-strip-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--psp-space-6);
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    filter: grayscale(100%) brightness(0.7);
+    opacity: 0.5;
+    transition: all var(--psp-duration-normal) var(--psp-ease);
+}
+
+.logo-icon:hover {
+    filter: grayscale(0%) brightness(1);
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .logo-strip-row {
+        gap: 1rem 1.5rem;
+    }
+    .logo-icon {
+        width: 30px;
+        height: 30px;
+    }
+}
 
 /* ---- Section Previews (3-column grid) ---- */
 .section-previews {

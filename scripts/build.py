@@ -1019,21 +1019,20 @@ def build_homepage(market_data, comp_data):
             <input type="email" placeholder="Your email" aria-label="Email address" required>
             <button type="submit" class="btn btn--primary">Get the Weekly Pulse</button>
         </form>
-        <p class="hero-signup-note">Free weekly. No spam.</p>
     </div>
 </section>
 
-<section class="logo-bar">
-    <p class="logo-bar-label">Tracking hiring data from companies like</p>
-    <div class="logo-bar-row">
-        <span class="logo-name">Salesforce</span>
-        <span class="logo-name">ServiceNow</span>
-        <span class="logo-name">Datadog</span>
-        <span class="logo-name">Snowflake</span>
-        <span class="logo-name">CrowdStrike</span>
-        <span class="logo-name">Palo Alto Networks</span>
-        <span class="logo-name">MongoDB</span>
-        <span class="logo-name">Databricks</span>
+<section class="logo-strip">
+    <p class="logo-strip-label">Tracking hiring data from companies like</p>
+    <div class="logo-strip-row">
+        <img class="logo-icon" src="/assets/logos/companies/salesforce.svg" alt="Salesforce" width="110" height="36">
+        <img class="logo-icon" src="/assets/logos/companies/servicenow.svg" alt="ServiceNow" width="115" height="36">
+        <img class="logo-icon" src="/assets/logos/companies/datadog.svg" alt="Datadog" width="82" height="36">
+        <img class="logo-icon" src="/assets/logos/companies/snowflake.svg" alt="Snowflake" width="100" height="36">
+        <img class="logo-icon" src="/assets/logos/companies/crowdstrike.svg" alt="CrowdStrike" width="120" height="36">
+        <img class="logo-icon" src="/assets/logos/companies/paloalto.svg" alt="Palo Alto Networks" width="98" height="36">
+        <img class="logo-icon" src="/assets/logos/companies/mongodb.svg" alt="MongoDB" width="92" height="36">
+        <img class="logo-icon" src="/assets/logos/companies/databricks.svg" alt="Databricks" width="110" height="36">
     </div>
 </section>
 
@@ -1180,7 +1179,7 @@ def build_newsletter():
         <input type="email" placeholder="Your email" aria-label="Email address" required>
         <button type="submit" class="btn btn--primary">Get the Weekly Pulse</button>
     </form>
-    <p style="color: var(--psp-text-secondary); margin-top: var(--psp-space-2, 0.5rem);">Free. Weekly. No spam. Unsubscribe anytime.</p>
+    <p style="color: var(--psp-text-secondary); margin-top: var(--psp-space-2, 0.5rem);">Free. Weekly. Unsubscribe anytime.</p>
 
     <h2>What You'll Get Every Wednesday</h2>
     <ul class="newsletter-features">
@@ -1202,7 +1201,7 @@ def build_newsletter():
         <input type="email" placeholder="Your email" aria-label="Email address" required>
         <button type="submit" class="btn btn--primary">Get the Weekly Pulse</button>
     </form>
-    <p style="color: var(--psp-text-secondary); text-align:center; margin-top: var(--psp-space-2, 0.5rem);">Free. Weekly. No spam. Unsubscribe anytime.</p>
+    <p style="color: var(--psp-text-secondary); text-align:center; margin-top: var(--psp-space-2, 0.5rem);">Free. Weekly. Unsubscribe anytime.</p>
 </div>
 '''
     page = get_page_wrapper(
