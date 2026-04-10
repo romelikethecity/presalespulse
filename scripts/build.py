@@ -941,15 +941,15 @@ def salary_related_links(current_slug, current_type):
 
 def build_homepage(market_data, comp_data):
     """Generate the homepage with Organization+WebSite schema."""
-    title = "Solutions Engineer Career Intelligence"
+    title = "SE Salary Data, Tool Reviews, and Career Intel"
     description = (
-        "SE salary data by seniority, location, and company stage. Tool reviews,"
-        " career guides, and job market analysis for Solutions Engineers. Updated weekly."
+        "SE salary data by seniority, location, and company stage. Independent tool reviews"
+        " and career guides for Solutions Engineers. Updated weekly. Free."
     )
 
     body = '''<section class="hero">
     <div class="hero-inner">
-        <h1>Solutions Engineer Career Intelligence</h1>
+        <h1>SE Salary Data, Tool Reviews, and Career Intel</h1>
         <p class="hero-subtitle">Salary data, tool reviews, career paths, and job market analysis for Solutions Engineers, Sales Engineers, and PreSales Consultants.</p>
         <div class="stat-grid">
             <div class="stat-block">
@@ -969,6 +969,7 @@ def build_homepage(market_data, comp_data):
                 <span class="stat-label">Cities Tracked</span>
             </div>
         </div>
+        <p class="signup-proof">Join 500+ solutions engineers getting weekly data</p>
         <form class="hero-signup" onsubmit="return false;">
             <input type="email" placeholder="Your email" aria-label="Email address" required>
             <button type="submit" class="btn btn--primary">Get the Weekly Pulse</button>
@@ -1126,23 +1127,37 @@ def build_newsletter():
     body = f'''{bc_html}
 <div class="newsletter-page">
     <section class="page-header">
-        <h1>The PreSales Pulse Newsletter</h1>
+        <h1>Free Weekly SE Salary Data and Tool Intel</h1>
     </section>
     <p class="lead">Every Wednesday: salary shifts, tool intel, hiring trends, and job market data for Solutions Engineers. Built from 4,250+ tracked SE job postings.</p>
+    <p class="signup-proof" style="font-size: 1.1rem; font-weight: 600; color: var(--psp-accent);">Join 500+ solutions engineers who read it every week</p>
     <form class="hero-signup" onsubmit="return false;">
         <input type="email" placeholder="Your email" aria-label="Email address" required>
         <button type="submit" class="btn btn--primary">Get the Weekly Pulse</button>
     </form>
-    <h2>What You Get</h2>
+    <p style="color: var(--psp-text-secondary); margin-top: var(--psp-space-2, 0.5rem);">Free. Weekly. No spam. Unsubscribe anytime.</p>
+
+    <h2>What You'll Get Every Wednesday</h2>
     <ul class="newsletter-features">
-        <li><strong>Salary movements:</strong> week-over-week changes in SE compensation across seniority levels, locations, and company stages</li>
-        <li><strong>Tool trends:</strong> which demo platforms, conversation intelligence tools, and SE software are showing up in job postings (and which are fading)</li>
-        <li><strong>Hiring signals:</strong> which companies are scaling their SE teams and what that tells us about the market</li>
+        <li><strong>Salary movements:</strong> week-over-week changes in SE compensation across seniority levels, locations, and company stages. Example: "Senior SE median in SF climbed $3K this month."</li>
+        <li><strong>Tool trends:</strong> which demo platforms, conversation intelligence tools, and SE software are showing up in job postings (and which are fading). Example: "Navattic mentions up 18% in Q1 job posts."</li>
+        <li><strong>Hiring signals:</strong> which companies are scaling their SE teams and what that tells us about the market. Example: "Datadog added 12 SE openings in 2 weeks."</li>
+        <li><strong>One career insight:</strong> a data-backed take on comp negotiation, career transitions, or market positioning for SEs.</li>
     </ul>
+
     <h2>Why Subscribe</h2>
     <p>The SE salary landscape changes faster than annual reports can capture. New tools emerge monthly. Companies adjust comp bands quarterly. Our weekly data gives you current information for <a href="/salary/">salary negotiations</a>, <a href="/careers/">career decisions</a>, and understanding where the SE market is heading.</p>
     <p>We analyze 4,250+ SE job postings across <a href="/salary/by-location/">15 US markets</a> and track compensation data from verified SE professionals. That data feeds the newsletter every Wednesday morning.</p>
-    <p style="color: var(--psp-text-secondary);">Free. No spam. Unsubscribe anytime.</p>
+
+    <p style="text-align:center; margin: var(--psp-space-6, 1.5rem) 0;"><a href="/insights/" class="btn btn--ghost">See a recent issue &rarr;</a></p>
+
+    <h2 style="text-align:center;">Get the data before your next 1:1</h2>
+    <p class="signup-proof" style="text-align:center;">Join 500+ solutions engineers getting weekly data</p>
+    <form class="hero-signup" onsubmit="return false;">
+        <input type="email" placeholder="Your email" aria-label="Email address" required>
+        <button type="submit" class="btn btn--primary">Get the Weekly Pulse</button>
+    </form>
+    <p style="color: var(--psp-text-secondary); text-align:center; margin-top: var(--psp-space-2, 0.5rem);">Free. Weekly. No spam. Unsubscribe anytime.</p>
 </div>
 '''
     page = get_page_wrapper(
@@ -1264,9 +1279,14 @@ def build_404():
     page = get_page_wrapper(
         title=title, description=description, canonical_path="/404.html",
         body_content=body, body_class="page-inner",
+        robots="noindex, nofollow",
     )
-    write_page("404.html", page)
-    print("  Built: 404.html")
+    # Write file directly instead of write_page() to avoid sitemap registration
+    full_path = os.path.join(OUTPUT_DIR, "404.html")
+    os.makedirs(os.path.dirname(full_path), exist_ok=True)
+    with open(full_path, "w", encoding="utf-8") as f:
+        f.write(page)
+    print("  Built: 404.html (noindex, excluded from sitemap)")
 
 
 # ---------------------------------------------------------------------------

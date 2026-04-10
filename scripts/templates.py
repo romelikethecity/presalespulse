@@ -18,7 +18,7 @@ SKIP_OG = False
 # HTML Head
 # ---------------------------------------------------------------------------
 
-def get_html_head(title, description, canonical_path, extra_head="", og_image=""):
+def get_html_head(title, description, canonical_path, extra_head="", og_image="", robots="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"):
     """Generate complete <head> section."""
     canonical = f"{SITE_URL}{canonical_path}"
     full_title = f"{title} - {SITE_NAME}" if title != SITE_NAME else SITE_NAME
@@ -43,7 +43,7 @@ def get_html_head(title, description, canonical_path, extra_head="", og_image=""
     <title>{full_title}</title>
     <meta name="description" content="{description}">
     <link rel="canonical" href="{canonical}">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="robots" content="{robots}">
 {"" if not GOOGLE_SITE_VERIFICATION_META else f'    <meta name="google-site-verification" content="{GOOGLE_SITE_VERIFICATION_META}">'}
 
     <!-- Open Graph -->
@@ -162,9 +162,10 @@ def get_footer_html():
             <div class="footer-column footer-newsletter">
                 <h4>Stay in the loop</h4>
                 <p>Weekly SE salary shifts, tool intel, and job market data.</p>
+                <p class="signup-proof">Join 500+ solutions engineers getting weekly data</p>
                 <form class="footer-newsletter-form" onsubmit="return false;">
                     <input type="email" placeholder="Your email" aria-label="Email address" required>
-                    <button type="submit" class="btn btn--primary">Subscribe</button>
+                    <button type="submit" class="btn btn--primary">Get the Weekly Pulse</button>
                 </form>
             </div>
         </div>
@@ -181,7 +182,7 @@ def get_footer_html():
 # ---------------------------------------------------------------------------
 
 def get_page_wrapper(title, description, canonical_path, body_content,
-                     active_path="", extra_head="", body_class=""):
+                     active_path="", extra_head="", body_class="", robots=""):
     """Assemble a full HTML document."""
     bc = f' class="{body_class}"' if body_class else ""
 
@@ -193,7 +194,8 @@ def get_page_wrapper(title, description, canonical_path, body_content,
             og_stem = og_stem[:-5]
         og_image = f"/assets/og/{og_stem}.png" if og_stem else "/assets/og/index.png"
 
-    head = get_html_head(title, description, canonical_path, extra_head, og_image=og_image)
+    robots_kwargs = {"robots": robots} if robots else {}
+    head = get_html_head(title, description, canonical_path, extra_head, og_image=og_image, **robots_kwargs)
     nav = get_nav_html(active_path)
     footer = get_footer_html()
 
@@ -462,8 +464,9 @@ def newsletter_cta_html(context=""):
     return f'''<section class="newsletter-cta">
     <h2>Get the Weekly Pulse</h2>
     <p>Salary shifts, tool intel, and job market data for Solutions Engineers.{ctx_text}</p>
+    <p class="signup-proof">Join 500+ solutions engineers getting weekly data</p>
     <form class="newsletter-cta-form" onsubmit="return false;">
         <input type="email" placeholder="Your email" aria-label="Email address" required>
-        <button type="submit" class="btn btn--primary">Subscribe</button>
+        <button type="submit" class="btn btn--primary">Get the Weekly Pulse</button>
     </form>
 </section>'''

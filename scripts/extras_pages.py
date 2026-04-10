@@ -138,9 +138,101 @@ def build_conferences_index():
     print("  Built: conferences/index.html")
 
 
+def build_insights_index():
+    """Generate /insights/ coming soon page."""
+    title = "SE Market Insights and Analysis"
+    description = "Job market analysis, tool trends, salary reports, and weekly pulse reports for Solutions Engineers. Data-driven insights updated regularly."
+
+    crumbs = [("Home", "/"), ("Insights", None)]
+    extra_head = get_breadcrumb_schema(crumbs)
+
+    body = f'''<div class="container">
+    <div class="salary-content">
+    {breadcrumb_html(crumbs)}
+    <h1>SE Market Insights and Analysis</h1>
+
+    <p>We're building a library of data-driven insights for Solutions Engineers. Every piece is backed by real job posting data, salary disclosures, and practitioner input rather than recycled industry talking points.</p>
+
+    <h2>What's Coming</h2>
+
+    <div class="card-grid">
+        <div class="card">
+            <h3>Job Market Analysis</h3>
+            <p>Weekly snapshots of SE hiring velocity, which companies are ramping and which are pulling back, broken out by seniority, location, and industry vertical.</p>
+            <span class="tag">Coming Soon</span>
+        </div>
+        <div class="card">
+            <h3>Tool Trends</h3>
+            <p>Which demo platforms, RFP tools, and conversation intelligence products are gaining traction in SE teams. Based on job posting requirements and practitioner surveys.</p>
+            <span class="tag">Coming Soon</span>
+        </div>
+        <div class="card">
+            <h3>Salary Reports</h3>
+            <p>Quarterly deep dives into SE compensation shifts. Base, variable, and equity breakdowns by seniority, geography, and company stage.</p>
+            <span class="tag">Coming Soon</span>
+        </div>
+        <div class="card">
+            <h3>Weekly Pulse Reports</h3>
+            <p>A concise weekly digest of what moved in the SE job market. New openings, closed roles, salary shifts, and hiring signals across B2B SaaS.</p>
+            <span class="tag">Coming Soon</span>
+        </div>
+    </div>
+
+    <h2>Get Notified When Insights Launch</h2>
+    <p>Subscribe to receive insights as soon as they publish, plus weekly SE job market data in the meantime.</p>
+
+    {newsletter_cta_html("Be the first to read new insights when they go live.")}
+    </div>
+</div>'''
+
+    html = get_page_wrapper(title, description, "/insights/", body, active_path="/insights/", extra_head=extra_head)
+    write_page("insights/index.html", html)
+    print("  Built: insights/index.html")
+
+
+def build_jobs_index():
+    """Generate /jobs/ coming soon page."""
+    title = "Solutions Engineer Job Board"
+    description = "SE job board aggregating Solutions Engineer, Sales Engineer, and Pre-Sales roles from major job boards. Updated twice weekly. 4,250+ jobs tracked."
+
+    crumbs = [("Home", "/"), ("Job Board", None)]
+    extra_head = get_breadcrumb_schema(crumbs)
+
+    body = f'''<div class="container">
+    <div class="salary-content">
+    {breadcrumb_html(crumbs)}
+    <h1>Solutions Engineer Job Board</h1>
+
+    <p>We're building a dedicated job board that aggregates SE roles from every major job board into one searchable feed. No recruiter spam, no irrelevant titles, just Solutions Engineer, Sales Engineer, and Pre-Sales roles at B2B SaaS companies.</p>
+
+    <h2>What the Job Board Will Include</h2>
+    <ul>
+        <li><strong>4,250+ SE jobs being tracked</strong> across LinkedIn, Indeed, Greenhouse, Lever, and company career pages</li>
+        <li><strong>Updated twice weekly</strong> so you see new postings within days, not weeks</li>
+        <li><strong>Salary data where disclosed</strong> from job postings that include compensation ranges</li>
+        <li><strong>Filters by seniority, location, and company</strong> to find exactly what you're looking for</li>
+        <li><strong>Remote-friendly tagging</strong> so you can filter for remote, hybrid, or on-site roles</li>
+    </ul>
+
+    <p>Every listing is verified as a real SE role. We filter out the "solutions engineer" titles that are actually IT support, implementation, or post-sale positions.</p>
+
+    <h2>Get Notified When This Launches</h2>
+    <p>The job board is in development. Subscribe to get notified when it goes live and receive weekly SE job market data in the meantime.</p>
+
+    {newsletter_cta_html("Get notified when the SE job board launches.")}
+    </div>
+</div>'''
+
+    html = get_page_wrapper(title, description, "/jobs/", body, active_path="/insights/", extra_head=extra_head)
+    write_page("jobs/index.html", html)
+    print("  Built: jobs/index.html")
+
+
 def build_all_extras():
     """Build all placeholder/coming-soon pages."""
     build_companies_index()
     build_reports_index()
     build_conferences_index()
-    return 3
+    build_insights_index()
+    build_jobs_index()
+    return 5
