@@ -18,6 +18,10 @@ from templates import (get_page_wrapper, write_page, get_homepage_schema,
                        get_software_application_schema, get_article_schema,
                        breadcrumb_html, newsletter_cta_html, faq_html, ALL_PAGES)
 from generate_og_images import generate_og_images, og_filename_from_path, og_template_for_path
+from tools_pages import build_all_tools
+from careers_pages import build_all_careers
+from glossary_pages import build_all_glossary
+from extras_pages import build_all_extras
 
 # OG image generation state
 OG_PAGES = []
@@ -2297,6 +2301,26 @@ def main():
     build_salary_methodology()
     build_salary_comp_structure()
     build_salary_ae_ratio()
+
+    # Build tool pages (Wave 2)
+    print("\n  Building tool pages...")
+    tools_count = build_all_tools()
+    print(f"  Built {tools_count} tool pages")
+
+    # Build career pages (Wave 3)
+    print("\n  Building career pages...")
+    careers_count = build_all_careers()
+    print(f"  Built {careers_count} career pages")
+
+    # Build glossary pages (Wave 3)
+    print("\n  Building glossary pages...")
+    glossary_count = build_all_glossary()
+    print(f"  Built {glossary_count} glossary pages")
+
+    # Build extra pages (Wave 3)
+    print("\n  Building extra pages...")
+    extras_count = build_all_extras()
+    print(f"  Built {extras_count} extra pages")
 
     # Register all pages for OG image generation
     print("\n  Registering OG pages...")
