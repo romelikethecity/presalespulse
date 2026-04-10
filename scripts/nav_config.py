@@ -10,7 +10,7 @@ CTA_LABEL = "Get the Weekly Pulse"
 
 SIGNUP_WORKER_URL = "https://presales-newsletter-signup.rome-workers.workers.dev/subscribe"
 
-GA_MEASUREMENT_ID = ""
+GA_MEASUREMENT_ID = "G-GKVM8J2662"
 GOOGLE_SITE_VERIFICATION = ""
 GOOGLE_SITE_VERIFICATION_META = ""
 
