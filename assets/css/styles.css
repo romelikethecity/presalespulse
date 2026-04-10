@@ -883,6 +883,20 @@ body.page-home .main-content {
     line-height: 1.6;
 }
 
+.newsletter-page .hero-signup input {
+    background: var(--psp-bg-surface);
+    border: 1px solid var(--psp-border);
+    color: var(--psp-text-primary);
+}
+
+.newsletter-page .hero-signup input::placeholder {
+    color: var(--psp-text-secondary);
+}
+
+.newsletter-page .hero-signup input:focus {
+    border-color: var(--psp-accent-hover);
+}
+
 .newsletter-features {
     text-align: left;
     margin-bottom: var(--psp-space-8);
