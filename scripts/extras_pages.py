@@ -6,6 +6,30 @@ from templates import (get_page_wrapper, write_page, get_breadcrumb_schema,
                        breadcrumb_html, newsletter_cta_html)
 
 
+def _extras_related_links(current_page):
+    """Generate cross-links between extras pages and main content sections."""
+    all_links = [
+        ("/companies/", "Companies Hiring SEs"),
+        ("/reports/", "SE Reports"),
+        ("/conferences/", "SE Conferences"),
+        ("/tools/", "SE Tool Reviews"),
+        ("/salary/", "SE Salary Data"),
+        ("/careers/", "Career Guides"),
+        ("/glossary/", "SE Glossary"),
+    ]
+    items = ""
+    for href, label in all_links:
+        if href.strip("/") == current_page.strip("/"):
+            continue
+        items += f'<a href="{href}" class="related-link-card">{label}</a>\n'
+    return f'''<section class="related-links">
+    <h2>Explore More</h2>
+    <div class="related-links-grid">
+        {items}
+    </div>
+</section>'''
+
+
 def build_companies_index():
     """Generate /companies/ coming soon page."""
     title = "Companies Hiring Solutions Engineers"
@@ -35,6 +59,7 @@ def build_companies_index():
     <h2>Get Notified When This Launches</h2>
     <p>Company profiles will launch in the next few weeks. Subscribe to get notified and receive weekly SE job market data in the meantime.</p>
 
+    {_extras_related_links("companies")}
     {newsletter_cta_html("Be the first to see company profiles when they go live.")}
     </div>
 </div>'''
@@ -82,6 +107,7 @@ def build_reports_index():
     <h2>Get Reports First</h2>
     <p>Subscribe to get reports delivered to your inbox as soon as they publish.</p>
 
+    {_extras_related_links("reports")}
     {newsletter_cta_html("Get reports delivered as soon as they publish.")}
     </div>
 </div>'''
@@ -129,6 +155,7 @@ def build_conferences_index():
     <h2>Know About an Event?</h2>
     <p>If you're organizing or aware of an SE-focused event, let us know. We'll add it to the calendar.</p>
 
+    {_extras_related_links("conferences")}
     {newsletter_cta_html("Get event announcements and SE community updates.")}
     </div>
 </div>'''
@@ -181,6 +208,7 @@ def build_insights_index():
     <h2>Get Notified When Insights Launch</h2>
     <p>Subscribe to receive insights as soon as they publish, plus weekly SE job market data in the meantime.</p>
 
+    {_extras_related_links("insights")}
     {newsletter_cta_html("Be the first to read new insights when they go live.")}
     </div>
 </div>'''
@@ -214,11 +242,12 @@ def build_jobs_index():
         <li><strong>Remote-friendly tagging</strong> so you can filter for remote, hybrid, or on-site roles</li>
     </ul>
 
-    <p>Every listing is verified as a real SE role. We filter out the "solutions engineer" titles that are actually IT support, implementation, or post-sale positions.</p>
+    <p>Every listing is verified as a real SE role. We filter out the "solutions engineer" titles that are in reality IT support, implementation, or post-sale positions.</p>
 
     <h2>Get Notified When This Launches</h2>
     <p>The job board is in development. Subscribe to get notified when it goes live and receive weekly SE job market data in the meantime.</p>
 
+    {_extras_related_links("jobs")}
     {newsletter_cta_html("Get notified when the SE job board launches.")}
     </div>
 </div>'''

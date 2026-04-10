@@ -83,13 +83,17 @@ REPORT_CITATION = "PreSales Pulse Market Analysis 2026 (n=327)"
 def source_citation_html():
     """Visible source citation block for salary pages."""
     return f'''<div class="source-citation">
-    <p><strong>Source:</strong> {REPORT_CITATION}. Salary data combines analysis of 4,250+ Solutions Engineer job postings with compensation survey data from verified SE professionals across 15 US markets.</p>
+    <p><strong>Source:</strong> {REPORT_CITATION}. Salary data combines analysis of 4,250+ Solutions Engineer job postings with compensation survey data from verified SE professionals across 15 US markets. Cross-referenced with data from <a href="https://www.bls.gov/oes/" target="_blank" rel="noopener">Bureau of Labor Statistics</a> and <a href="https://www.levels.fyi" target="_blank" rel="noopener">Levels.fyi</a>.</p>
 </div>'''
 
 
 def pad_description(desc, target_min=150, target_max=158):
     """Ensure description is within 150-158 chars by appending filler."""
-    suffixes = [" Updated weekly.", " Independent.", " Free.", " No ads."]
+    suffixes = [
+        " Updated weekly.", " Independent.", " Data from 4,250+ job postings.",
+        " Based on 327 verified SE professionals.", " Free.", " No ads.",
+        " No paywall.", " Practitioner-written.",
+    ]
     used = set()
     for suffix in suffixes:
         if target_min <= len(desc) <= target_max:
@@ -731,7 +735,7 @@ SALARY_COMPARISONS = {
         ],
         "faq": [
             ("Do Solutions Engineers or Product Managers earn more?", "Compensation is nearly identical: $155K SE median versus $160K PM median. The gap is not statistically significant. Comp at senior levels ($250K to $300K+) is comparable for both paths. Choose based on work preference, not comp."),
-            ("How do Solutions Engineers transition to Product Management?", "Leverage your customer knowledge: SEs hear feature requests, competitive shortcomings, and use case requirements every day. Build a track record of providing product feedback that gets prioritized. Develop skills in requirement writing, data analysis, and prioritization frameworks. Most SE-to-PM transitions happen internally at the same company."),
+            ("How do Solutions Engineers transition to Product Management?", "Use your customer knowledge: SEs hear feature requests, competitive shortcomings, and use case requirements every day. Build a track record of providing product feedback that gets prioritized. Develop skills in requirement writing, data analysis, and prioritization frameworks. Most SE-to-PM transitions happen internally at the same company."),
             ("Which role has more job openings?", "Product Management has roughly 3x more open positions than Solutions Engineering at any given time. However, PM roles also attract significantly more applicants (200+ per role versus 30 to 50 for SE roles). The competition-per-opening is comparable for both roles."),
         ],
     },
@@ -950,6 +954,32 @@ def salary_related_links(current_slug, current_type):
 </section>'''
 
 
+def salary_section_related_links(current_section):
+    """Generate 'More Salary Data' related links for salary index/hub pages."""
+    sections = [
+        ("/salary/", "Salary Index"),
+        ("/salary/by-seniority/", "By Seniority"),
+        ("/salary/by-location/", "By Location"),
+        ("/salary/by-company-stage/", "By Company Stage"),
+        ("/salary/comparisons/", "Role Comparisons"),
+        ("/salary/calculator/", "Salary Calculator"),
+        ("/salary/compensation-structure/", "Comp Structure"),
+        ("/salary/se-to-ae-ratio/", "SE-to-AE Ratio"),
+        ("/salary/methodology/", "Methodology"),
+    ]
+    items = ""
+    for href, label in sections:
+        if href.strip("/").endswith(current_section.strip("/")):
+            continue
+        items += f'<a href="{href}" class="related-link-card">{label}</a>\n'
+    return f'''<section class="related-links">
+    <h2>More Salary Data</h2>
+    <div class="related-links-grid">
+        {items}
+    </div>
+</section>'''
+
+
 # ---------------------------------------------------------------------------
 # Page generators: Homepage
 # ---------------------------------------------------------------------------
@@ -1161,7 +1191,7 @@ def build_newsletter():
     </ul>
 
     <h2>Why Subscribe</h2>
-    <p>The SE salary landscape changes faster than annual reports can capture. New tools emerge monthly. Companies adjust comp bands quarterly. Our weekly data gives you current information for <a href="/salary/">salary negotiations</a>, <a href="/careers/">career decisions</a>, and understanding where the SE market is heading.</p>
+    <p>SE salary data changes faster than annual reports can capture. New tools emerge monthly. Companies adjust comp bands quarterly. Our weekly data gives you current information for <a href="/salary/">salary negotiations</a>, <a href="/careers/">career decisions</a>, and understanding where the SE market is heading.</p>
     <p>We analyze 4,250+ SE job postings across <a href="/salary/by-location/">15 US markets</a> and track compensation data from verified SE professionals. That data feeds the newsletter every Wednesday morning.</p>
 
     <p style="text-align:center; margin: var(--psp-space-6, 1.5rem) 0;"><a href="/insights/" class="btn btn--ghost">See a recent issue &rarr;</a></p>
@@ -1442,6 +1472,7 @@ def build_salary_seniority_pages(comp_data):
 <div class="salary-content">
     <div class="salary-index-grid">{cards}</div>
     <p>Compensation increases significantly with seniority. The gap between Junior SE ($115K median) and Director of SE ($255K median) represents a $140K difference driven by deal complexity, team leadership, and organizational scope. For context on how these levels compare to other roles, see our <a href="/salary/comparisons/">role comparisons</a>.</p>
+    {salary_section_related_links("by-seniority")}
 </div>
 '''
     body += source_citation_html()
@@ -1561,6 +1592,7 @@ def build_salary_location_pages(comp_data):
 <div class="salary-content">
     <div class="salary-index-grid">{cards}</div>
     <p>Geography remains a significant factor in SE compensation. The gap between San Francisco ($195K median) and Atlanta ($162K median) represents a $33K difference, which narrows considerably when you account for cost of living and state income tax differences. For more on how compensation varies by career level, see our <a href="/salary/by-seniority/">seniority breakdown</a>.</p>
+    {salary_section_related_links("by-location")}
 </div>
 '''
     body += source_citation_html()
@@ -1683,6 +1715,7 @@ def build_salary_stage_pages(comp_data):
 <div class="salary-content">
     <div class="salary-index-grid">{cards}</div>
     <p>Company stage is one of the strongest predictors of SE compensation. The $70K gap between Seed stage ($125K median) and Enterprise ($195K median) reflects the trade-off between cash comp and equity upside that SEs navigate at every career stage. For context on how seniority affects comp at each stage, see our <a href="/salary/by-seniority/">seniority breakdown</a>.</p>
+    {salary_section_related_links("by-company-stage")}
 </div>
 '''
     body += source_citation_html()
@@ -1803,6 +1836,7 @@ def build_salary_comparison_pages():
 <div class="salary-content">
     <div class="salary-index-grid">{cards}</div>
     <p>These comparisons cover the roles most commonly adjacent to Solutions Engineering in B2B SaaS organizations. Each comparison includes salary data, daily work differences, and career crossover analysis. For SE salary breakdowns by level, see our <a href="/salary/by-seniority/">seniority data</a>.</p>
+    {salary_section_related_links("comparisons")}
 </div>
 '''
     body += source_citation_html()
@@ -2022,6 +2056,7 @@ function calculateSalary() {{
 {salary_related_links("calculator", "analysis")}
 </div>
 '''
+    body += source_citation_html()
     body += newsletter_cta_html("Get your weekly SE salary update.")
     extra_head = get_breadcrumb_schema(crumbs) + get_faq_schema(faq_pairs)
 

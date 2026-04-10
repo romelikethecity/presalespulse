@@ -1125,6 +1125,15 @@ def build_glossary_index():
     <h2>All Terms A-Z</h2>
     {letter_nav}
     {term_list}
+    <section class="related-links">
+        <h2>Explore More</h2>
+        <div class="related-links-grid">
+            <a href="/careers/" class="related-link-card">Career Guides</a>
+            <a href="/tools/" class="related-link-card">SE Tool Reviews</a>
+            <a href="/salary/" class="related-link-card">SE Salary Data</a>
+            <a href="/companies/" class="related-link-card">Companies Hiring SEs</a>
+        </div>
+    </section>
 </div>
 '''
     body += newsletter_cta_html("Stay sharp on SE terminology and trends.")

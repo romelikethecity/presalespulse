@@ -15,7 +15,11 @@ DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__
 
 def pad_description(desc, target_min=150, target_max=158):
     """Ensure description is within 150-158 chars by appending filler."""
-    suffixes = [" Updated weekly.", " Independent.", " Free.", " No ads."]
+    suffixes = [
+        " Updated weekly.", " Independent.", " Data from 4,250+ job postings.",
+        " Based on practitioner reviews.", " Free.", " No ads.",
+        " No paywall.", " Practitioner-written.",
+    ]
     used = set()
     for suffix in suffixes:
         if target_min <= len(desc) <= target_max:
@@ -846,7 +850,7 @@ TOOL_PROFILES = {
             ("Loopio vs Responsive: which is better?",
              "Both are strong RFP automation tools. Loopio is often preferred for its UI and content management. Responsive (formerly RFPIO) has a slightly larger market presence. The best choice depends on UI preference, integration requirements, and pricing for your team size."),
             ("How long does Loopio implementation take?",
-             "Initial setup takes 4 to 8 weeks, including content library migration, user training, and integration configuration. The content library continues to grow and improve after launch."),
+             "Initial setup takes 4 to 8 weeks, including content library migration, user training, and integration configuration. The content library grows and improves after launch."),
         ],
         "related_tools": ["responsive", "ombud"],
     },
@@ -2272,7 +2276,7 @@ def build_tools_index(market_data):
     extra_head = bc_schema + get_faq_schema(faq_pairs)
     page = get_page_wrapper(
         title="SE Tool Reviews and Platform Comparisons",
-        description="Reviews of Consensus, Navattic, Gong, Salesforce, PandaDoc, and more. Data-backed SE tool comparisons from 4,250 job postings.",
+        description="Independent reviews of Consensus, Navattic, Gong, Salesforce, PandaDoc, and 25 more SE tools. Pricing, ratings, and comparisons from 4,250 job postings.",
         canonical_path="/tools/",
         body_content=body,
         active_path="/tools/",
@@ -2312,7 +2316,7 @@ def build_tools_category_index():
     extra_head = bc_schema
     page = get_page_wrapper(
         title="SE Tool Categories - Browse by Type",
-        description=f"Browse SE tools by category. {len(CATEGORIES)} categories covering demo platforms, RFP tools, CPQ, conversation intelligence, and more.",
+        description=f"Browse {len(TOOL_PROFILES)} SE tools across {len(CATEGORIES)} categories: demo platforms, RFP automation, CPQ, conversation intelligence, CRM, and diagramming. Independent reviews updated {CURRENT_YEAR}.",
         canonical_path="/tools/categories/",
         body_content=body,
         active_path="/tools/",
@@ -2371,9 +2375,11 @@ def build_tools_category_pages(market_data):
 </div>'''
 
         extra_head = bc_schema + get_faq_schema(faq_pairs)
+        cat_desc = f"Compare {len(cat['tools'])} {cat['name'].lower()} for solutions engineers. Independent reviews with pricing, ratings, and SE-specific analysis. Updated {CURRENT_YEAR}."
+        cat_desc = pad_description(cat_desc)
         page = get_page_wrapper(
             title=f"{cat['name']} Reviews for SE Teams",
-            description=f"Reviews of the best {cat['name'].lower()} for Solutions Engineers: {', '.join(cat['tools'][:4])}. Feature comparison and recommendations.",
+            description=cat_desc,
             canonical_path=f"/tools/category/{cat_slug}/",
             body_content=body,
             active_path="/tools/",
@@ -2477,6 +2483,8 @@ def build_tools_review_pages(market_data):
         </tbody>
     </table>
 
+    <p>Visit <a href="{profile.get("website", "#")}" target="_blank" rel="noopener">{name} official site</a>. Read user reviews on <a href="https://www.g2.com/products/{slug}/reviews" target="_blank" rel="noopener">G2</a>.</p>
+
     {"<h2>Comparisons</h2><div class='related-links-grid'>" + comp_links + "</div>" if comp_links else ""}
     {"<h2>Alternatives</h2><div class='related-links-grid'>" + alt_links + "</div>" if alt_links else ""}
     {"<h2>Related Tools</h2><div class='related-links-grid'>" + tool_links + "</div>" if tool_links else ""}
@@ -2574,9 +2582,11 @@ def build_tools_comparison_pages(market_data):
 </div>'''
 
         extra_head = bc_schema + get_faq_schema(comp["faq"])
+        comp_desc = f"{comp['tool_a']} vs {comp['tool_b']} for solutions engineers. Side-by-side comparison of features, pricing, and which is better for your SE workflow in {CURRENT_YEAR}."
+        comp_desc = pad_description(comp_desc)
         page = get_page_wrapper(
             title=comp["title"],
-            description=f"{comp['tool_a']} vs {comp['tool_b']} for Solutions Engineers. Feature comparison, pricing, and recommendations based on {total_jobs:,} job postings.",
+            description=comp_desc,
             canonical_path=f"/tools/compare/{slug}/",
             body_content=body,
             active_path="/tools/",
@@ -2584,6 +2594,24 @@ def build_tools_comparison_pages(market_data):
         )
         write_page(f"tools/compare/{slug}/index.html", page)
         print(f"  Built: tools/compare/{slug}/index.html")
+
+
+def _roundup_related_links(current_slug):
+    """Generate related links for roundup pages: other roundups + relevant comparisons."""
+    links = []
+    for r in ROUNDUPS:
+        if r["slug"] != current_slug:
+            links.append(f'<a href="/tools/roundup/{r["slug"]}/" class="related-link-card">{r["h1"]}</a>')
+    # Add a few comparison links
+    for comp in COMPARISONS[:3]:
+        links.append(f'<a href="/tools/compare/{comp["slug"]}/" class="related-link-card">{comp["tool_a"]} vs {comp["tool_b"]}</a>')
+    links = links[:8]
+    if not links:
+        return ""
+    return f'''<section class="related-links">
+    <h2>Related Roundups and Comparisons</h2>
+    <div class="related-links-grid">{"".join(links)}</div>
+</section>'''
 
 
 def build_tools_roundup_pages(market_data):
@@ -2637,13 +2665,19 @@ def build_tools_roundup_pages(market_data):
 
     {source_citation_html()}
     {faq_html(faq_pairs)}
+
+    {_roundup_related_links(slug)}
+
     {newsletter_cta_html("Get weekly SE tool roundups and platform updates.")}
 </div>'''
 
         extra_head = bc_schema + get_faq_schema(faq_pairs)
+        tool_count = len(roundup["rankings"])
+        roundup_desc = f"The {tool_count} best {roundup['h1'].replace('Best ', '').lower()} in {CURRENT_YEAR}. Independent rankings based on SE job posting data, pricing, and practitioner reviews."
+        roundup_desc = pad_description(roundup_desc)
         page = get_page_wrapper(
             title=roundup["title"],
-            description=roundup["description"],
+            description=roundup_desc,
             canonical_path=f"/tools/roundup/{slug}/",
             body_content=body,
             active_path="/tools/",
@@ -2713,9 +2747,12 @@ def build_tools_alternatives_pages(market_data):
 </div>'''
 
         extra_head = bc_schema + get_faq_schema(alt["faq"])
+        alt_count = len(alt.get("alternatives", []))
+        alt_desc = f"Top {tool_name} alternatives for solutions engineers. Compare {alt_count} options with pricing, features, and honest assessments for SE teams in {CURRENT_YEAR}."
+        alt_desc = pad_description(alt_desc)
         page = get_page_wrapper(
             title=alt["title"],
-            description=alt.get("description", f"Best {tool_name} alternatives for SE teams. Feature comparison and recommendations."),
+            description=alt_desc,
             canonical_path=f"/tools/alternatives/{slug}/",
             body_content=body,
             active_path="/tools/",

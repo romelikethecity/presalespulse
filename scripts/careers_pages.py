@@ -275,7 +275,7 @@ CAREER_GUIDES = [
     <ul>
         <li><strong>NAASE Certified Sales Engineer (CSE)</strong> - The only certification specifically for the SE role. Covers the full pre-sales lifecycle from discovery through technical close. Worth pursuing if you're breaking in from a non-traditional background because it signals commitment to the craft.</li>
         <li><strong>Vendor-specific certifications</strong> - AWS Solutions Architect, Salesforce Admin, Google Cloud certifications, Azure certs. These validate domain-specific technical knowledge and are especially valuable when you're targeting SE roles at companies in those ecosystems.</li>
-        <li><strong>Demo platform certifications</strong> - Consensus, Navattic, and other demo platforms offer training programs. These are less about the certificate and more about learning the demo best practices that the programs teach.</li>
+        <li><strong>Demo platform certifications</strong> - Consensus, Navattic, and other demo platforms offer training programs. The value is in learning the demo best practices that the programs teach, not the certificate itself.</li>
     </ul>
 
     <p>See our <a href="/careers/se-certification-guide/">full certification guide</a> for detailed analysis of which certs matter for hiring and compensation impact.</p>
@@ -1403,7 +1403,7 @@ CAREER_GUIDES = [
         </tbody>
     </table>
 
-    <p>GTM Engineering comp is 10-15% lower than SE comp at the same seniority in today's market. The gap is narrowing as the function matures and companies compete for experienced GTM Engineers. The comp structure also differs: GTM Engineers typically have lower variable comp (0-15% of base) compared to SEs (20-30%). The stability is higher, but the upside is lower.</p>
+    <p>GTM Engineering comp is 10-15% lower than SE comp at the same seniority right now. The gap is narrowing as the function matures and companies compete for experienced GTM Engineers. The comp structure also differs: GTM Engineers typically have lower variable comp (0-15% of base) compared to SEs (20-30%). The stability is higher, but the upside is lower.</p>
 
     <p>Early entrants to GTM Engineering are building equity in a rapidly growing discipline. The demand for experienced GTM Engineers far exceeds supply, which will compress the SE-GTM comp gap over the next 2 to 3 years. SEs who make the transition now position themselves at the senior end of a field that's about to grow significantly.</p>
 
