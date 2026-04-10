@@ -1025,14 +1025,14 @@ def build_homepage(market_data, comp_data):
 <section class="logo-strip">
     <p class="logo-strip-label">Tracking hiring data from companies like</p>
     <div class="logo-strip-row">
-        <img class="logo-icon" src="/assets/logos/companies/salesforce.svg" alt="Salesforce" width="110" height="36">
-        <img class="logo-icon" src="/assets/logos/companies/servicenow.svg" alt="ServiceNow" width="115" height="36">
-        <img class="logo-icon" src="/assets/logos/companies/datadog.svg" alt="Datadog" width="82" height="36">
-        <img class="logo-icon" src="/assets/logos/companies/snowflake.svg" alt="Snowflake" width="100" height="36">
-        <img class="logo-icon" src="/assets/logos/companies/crowdstrike.svg" alt="CrowdStrike" width="120" height="36">
-        <img class="logo-icon" src="/assets/logos/companies/paloalto.svg" alt="Palo Alto Networks" width="98" height="36">
-        <img class="logo-icon" src="/assets/logos/companies/mongodb.svg" alt="MongoDB" width="92" height="36">
-        <img class="logo-icon" src="/assets/logos/companies/databricks.svg" alt="Databricks" width="110" height="36">
+        <img class="logo-icon" src="/assets/logos/companies/salesforce.png" alt="Salesforce" width="128" height="128">
+        <img class="logo-icon" src="/assets/logos/companies/servicenow.png" alt="ServiceNow" width="128" height="128">
+        <img class="logo-icon" src="/assets/logos/companies/datadog.png" alt="Datadog" width="128" height="128">
+        <img class="logo-icon" src="/assets/logos/companies/snowflake.png" alt="Snowflake" width="128" height="128">
+        <img class="logo-icon" src="/assets/logos/companies/crowdstrike.png" alt="CrowdStrike" width="128" height="128">
+        <img class="logo-icon" src="/assets/logos/companies/paloalto.png" alt="Palo Alto Networks" width="128" height="128">
+        <img class="logo-icon" src="/assets/logos/companies/mongodb.png" alt="MongoDB" width="128" height="128">
+        <img class="logo-icon" src="/assets/logos/companies/databricks.png" alt="Databricks" width="128" height="128">
     </div>
 </section>
 

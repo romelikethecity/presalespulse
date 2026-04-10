@@ -366,14 +366,17 @@
 }
 
 .logo-icon {
-    height: 20px;
-    width: auto;
-    opacity: 0.45;
-    transition: opacity var(--psp-duration-normal) var(--psp-ease);
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    filter: grayscale(100%) brightness(0.7);
+    opacity: 0.5;
+    transition: all 0.2s;
 }
 
 .logo-icon:hover {
-    opacity: 0.85;
+    filter: grayscale(0%) brightness(1);
+    opacity: 1;
 }
 
 @media (max-width: 768px) {
