@@ -293,7 +293,7 @@ def build_insight_se_to_gtm_engineer():
 
     <p>This guide covers what the role involves, where your SE experience gives you an edge, what you need to learn, and how the compensation compares.</p>
 
-    <h2>What GTM Engineers Actually Do</h2>
+    <h2>What GTM Engineers Do Day to Day</h2>
 
     <p>GTM Engineers build automated outbound systems using tools like Clay, APIs, AI models, and custom scripts. The job is part revenue operations, part engineering, part growth hacking. On a typical day, a GTM Engineer might:</p>
 
