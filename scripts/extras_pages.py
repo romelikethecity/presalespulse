@@ -3,7 +3,8 @@ import json
 
 from nav_config import *
 from templates import (get_page_wrapper, write_page, get_breadcrumb_schema,
-                       breadcrumb_html, newsletter_cta_html)
+                       get_faq_schema, get_article_schema,
+                       breadcrumb_html, newsletter_cta_html, faq_html)
 
 
 def _extras_related_links(current_page):
@@ -257,6 +258,158 @@ def build_jobs_index():
     print("  Built: jobs/index.html")
 
 
+def build_insight_se_to_gtm_engineer():
+    """Generate /insights/se-to-gtm-engineer/ article page."""
+    slug = "se-to-gtm-engineer"
+    title = "Solutions Engineer to GTM Engineer: Career Switch Guide"
+    description = "How SEs transition into GTM Engineering. Skills overlap, salary comparison ($120K-$200K vs $132K-$250K), and a practical switch playbook."
+    date_published = "2026-04-12"
+    word_count = 1850
+
+    crumbs = [("Home", "/"), ("Insights", "/insights/"), ("SE to GTM Engineer", None)]
+
+    faq_pairs = [
+        ("What is a GTM Engineer?",
+         "A GTM Engineer builds automated outbound systems, data enrichment pipelines, and revenue tooling for go-to-market teams. They use Clay, Python, APIs, and CRM automation to generate pipeline at scale. The role sits between sales, marketing, and engineering."),
+        ("Can a Solutions Engineer become a GTM Engineer without a CS degree?",
+         "Yes. Most GTM Engineers don't have computer science degrees. The technical bar is scripting-level Python, API fluency, and tool proficiency in Clay or similar platforms. SEs already understand APIs, CRM data models, and sales workflows, which covers roughly 60% of the GTM Engineer skill set."),
+        ("Is GTM Engineering a pay cut compared to SE roles?",
+         "Not necessarily. According to GTME Pulse data, the median GTM Engineer earns $132K with senior roles reaching $250K. That's a 15-30% premium over most mid-level SE positions. The variable comp structure differs (lower variable, higher base), but total comp is competitive or higher for experienced practitioners."),
+        ("How long does the SE to GTM Engineer transition take?",
+         "Most SEs can make the switch in 3 to 6 months. The first 2 months focus on learning Clay and building portfolio projects. Months 3 and 4 involve deepening Python and API skills. By month 5 or 6, you should be ready to interview. SEs with existing scripting experience can compress this to 6 to 8 weeks."),
+    ]
+
+    body = f'''<div class="container">
+    <div class="salary-content">
+    {breadcrumb_html(crumbs)}
+
+    <article>
+    <h1>{title}</h1>
+    <p class="article-meta">By Rome Thorndike | April 12, 2026 | 8 min read</p>
+
+    <p>You've spent years running discovery calls, building custom demos, and translating technical complexity into business outcomes. You know CRM data models inside out. You've written API integration scripts for POC environments. You understand the revenue cycle from first meeting to close.</p>
+
+    <p>GTM Engineering takes those skills and points them in a different direction: instead of winning deals one at a time, you build the systems that generate pipeline at scale.</p>
+
+    <p>This guide covers what the role involves, where your SE experience gives you an edge, what you need to learn, and how the compensation compares.</p>
+
+    <h2>What GTM Engineers Actually Do</h2>
+
+    <p>GTM Engineers build automated outbound systems using tools like Clay, APIs, AI models, and custom scripts. The job is part revenue operations, part engineering, part growth hacking. On a typical day, a GTM Engineer might:</p>
+
+    <ul>
+        <li>Build a Clay table that pulls company data from multiple enrichment sources, scores it against an ICP, and pushes qualified leads into a sequencing tool</li>
+        <li>Write a Python script that monitors job postings for buying signals (new VP of Sales hired, Series B announced) and triggers personalized outreach</li>
+        <li>Design a lead routing system that assigns prospects to the right AE based on territory, industry, and deal size</li>
+        <li>Create a data pipeline that deduplicates, validates, and enriches contact records before they enter the CRM</li>
+    </ul>
+
+    <p>The common thread: GTM Engineers write code and build systems. They don't configure off-the-shelf tools (that's RevOps). They don't write production software (that's engineering). They build the automation layer that connects sales, marketing, and data into a functioning revenue machine.</p>
+
+    <p>According to <a href="https://gtmepulse.com/" target="_blank" rel="noopener">GTME Pulse job market data</a>, GTM Engineer postings grew 340% YoY, making it one of the fastest-growing roles in B2B.</p>
+
+    <h2>Skills You Already Have</h2>
+
+    <p>SEs underestimate how much of the GTM Engineer skill set they've already built. Here's what transfers directly:</p>
+
+    <p><strong>Technical communication.</strong> GTM Engineers work across sales, marketing, RevOps, and engineering. You've been doing that for years. The ability to explain a technical system to a non-technical stakeholder is just as valuable in GTM Engineering as it is in pre-sales.</p>
+
+    <p><strong>Product and market knowledge.</strong> You understand B2B SaaS buying cycles, pain points, and decision-making structures. That context shapes every automation a GTM Engineer builds. An enrichment pipeline built by someone who understands ICP is fundamentally better than one built by a generalist developer.</p>
+
+    <p><strong>CRM fluency.</strong> GTM Engineers spend 30-40% of their time working in or on CRM systems. You already know Salesforce or HubSpot data models, object relationships, workflows, and reporting. That's months of ramp time you skip entirely.</p>
+
+    <p><strong>API understanding.</strong> If you've done POC integrations, built demo environments, or connected tools during technical evaluations, you understand authentication flows, REST endpoints, and data serialization. GTM Engineering uses the same concepts for persistent integrations instead of temporary demo configs.</p>
+
+    <p><strong>Stakeholder management.</strong> You've managed multi-threaded deals with competing priorities from AEs, product, and customers. GTM Engineers navigate the same dynamics across sales leadership, marketing, and engineering teams. The political skill transfers completely.</p>
+
+    <h2>Skills You Need to Add</h2>
+
+    <p>The gap between SE and GTM Engineer is narrower than most people think, but it's real. Here's what to focus on:</p>
+
+    <p><strong>Clay and enrichment platforms.</strong> Clay is the dominant tool in GTM Engineering for data enrichment and workflow automation. Learn it first. Build a project that pulls data from 3+ sources, applies scoring logic, and outputs a qualified lead list. Alongside Clay, get comfortable with Apollo, ZoomInfo, and Clearbit as data sources. Budget 2 to 3 weeks for Clay proficiency.</p>
+
+    <p><strong>Outbound automation.</strong> Understand how sequencing tools (Outreach, Salesloft, Lemlist, Instantly) work at a system level. GTM Engineers don't just use these tools. They build the data pipelines that feed them. Learn how to structure a multi-step sequence, set up A/B testing, and measure reply rates.</p>
+
+    <p><strong>Python scripting.</strong> You don't need to be a software engineer. You need to write scripts that call APIs, transform data, and push results to other systems. A typical GTM Engineering script is 50 to 200 lines of Python. Focus on the <code>requests</code> library for API calls, <code>pandas</code> for data manipulation, and basic file I/O. If you can write a script that pulls data from an API, filters it, and writes the results to a CSV, you're 80% there.</p>
+
+    <p><strong>SQL basics.</strong> Querying databases, building reports, and understanding data warehouse concepts (Snowflake, BigQuery) are increasingly expected. GTM Engineers analyze pipeline data, attribution models, and enrichment quality. SQL fluency is non-negotiable. Plan for 2 to 4 weeks of focused practice.</p>
+
+    <h2>The Salary Jump</h2>
+
+    <p>This is where the conversation gets interesting.</p>
+
+    <p>Solutions Engineers earn $120K to $200K in base salary depending on seniority and location. Total comp (with variable and equity) ranges from $145K to $300K at the senior end.</p>
+
+    <p><a href="https://gtmepulse.com/salary/" target="_blank" rel="noopener">GTME Pulse tracks GTM Engineer compensation</a> at a median of $132K, with senior roles hitting $250K. That's a 15-30% premium over most SE roles at the same experience level.</p>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Level</th>
+                <th>SE Base Salary</th>
+                <th>GTM Engineer Base Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Mid-Level (2-4 years)</td><td>$120K&#8209;$160K</td><td>$115K&#8209;$155K</td></tr>
+            <tr><td>Senior (5-8 years)</td><td>$150K&#8209;$200K</td><td>$155K&#8209;$200K</td></tr>
+            <tr><td>Lead/Principal (8+ years)</td><td>$180K&#8209;$230K</td><td>$190K&#8209;$250K</td></tr>
+        </tbody>
+    </table>
+
+    <p>The comp structures differ in important ways. SE roles carry 20-30% variable compensation tied to deal outcomes. GTM Engineer roles typically have 0-15% variable, with higher base salaries and more stability. For SEs tired of quarter-end pressure affecting their paycheck, that structural shift is attractive on its own.</p>
+
+    <p>The supply-demand imbalance matters too. There are roughly 50,000 to 80,000 SEs in the US. GTM Engineering as a defined discipline is less than 3 years old. Companies building GTM Engineering functions are competing for a tiny talent pool, which pushes comp higher for experienced practitioners. SEs who make the transition now establish themselves at the senior end of a growing field.</p>
+
+    <h2>How to Make the Switch</h2>
+
+    <p>The transition takes 3 to 6 months of focused effort. Here's a realistic timeline:</p>
+
+    <p><strong>Weeks 1-4: Learn Clay.</strong> Build 3 real projects. Start with a simple ICP scoring table. Then build an enrichment pipeline that pulls from multiple data sources. Then create a workflow that identifies buying signals from job postings or funding announcements. Document everything in a portfolio.</p>
+
+    <p><strong>Weeks 5-8: Sharpen Python and SQL.</strong> Work through API integration projects. Build a script that pulls data from a CRM API, enriches it via a third-party service, and writes the results back. Practice SQL queries against sample datasets. Focus on joins, aggregations, and window functions.</p>
+
+    <p><strong>Weeks 9-12: Build your narrative.</strong> Update your LinkedIn to highlight automation, tooling, and systems work from your SE career. Reframe POC integrations as "built data pipelines." Reframe demo environment configuration as "automated technical workflows." These aren't stretches; they're accurate descriptions of transferable work.</p>
+
+    <p><strong>Weeks 13-16: Interview and land the role.</strong> Apply to GTM Engineering roles at companies in your industry vertical. Your domain expertise is a competitive advantage. In interviews, lead with "I understand how revenue teams work and I can build the systems that make them better." That combination is rare and valuable.</p>
+
+    <h3>Portfolio Projects That Get Interviews</h3>
+
+    <p>Build these and put them on GitHub or in a Notion portfolio:</p>
+
+    <ol>
+        <li><strong>ICP scoring engine</strong> built in Clay that takes a list of companies and returns a ranked, scored output with enrichment data from 3+ sources</li>
+        <li><strong>Buying signal detector</strong> that monitors job postings or press releases for trigger events and outputs a lead list with personalized talking points</li>
+        <li><strong>Data quality pipeline</strong> in Python that deduplicates, validates emails, and standardizes company names across a messy CRM export</li>
+    </ol>
+
+    <p>Any one of these demonstrates the core GTM Engineering skill set. All three together put you ahead of 90% of applicants.</p>
+
+    <h2>Is This the Right Move for You?</h2>
+
+    <p>The SE-to-GTM-Engineer switch works best for SEs who get more energy from building than from presenting. If the 3 hours of demo prep excite you more than the 1 hour of delivery, GTM Engineering is a natural fit. If you've ever thought "someone should automate this broken process," you're describing the GTM Engineer's job description.</p>
+
+    <p>It's not the right move if you love the customer-facing, relationship-driven aspects of SE work. GTM Engineers spend most of their time building systems, not presenting to buyers. The human interaction shifts from external (customers) to internal (sales and marketing teams).</p>
+
+    <p>For a deeper look at the career paths and title variants in GTM Engineering, <a href="https://gtmepulse.com/" target="_blank" rel="noopener">GTME Pulse</a> tracks the full landscape of GTM Engineer roles, salaries, and hiring trends.</p>
+
+    <p>For more on SE career transitions, see our <a href="/careers/se-to-gtm-engineer/">SE to GTM Engineer transition guide</a> with detailed skill mapping. You can also explore <a href="/salary/">SE salary data</a> for compensation benchmarks across seniority levels, or browse the <a href="/jobs/">SE job board</a> if you want to compare what's available before making a move. Our <a href="/tools/">SE tool reviews</a> cover the platforms you'll encounter on both sides of the transition.</p>
+
+    </article>
+
+    {faq_html(faq_pairs)}
+
+    {newsletter_cta_html("Get weekly career intel for solutions engineers.")}
+    </div>
+</div>'''
+
+    extra_head = get_breadcrumb_schema(crumbs) + get_faq_schema(faq_pairs) + get_article_schema(title, description, slug, date_published, word_count)
+
+    html = get_page_wrapper(title, description, f"/insights/{slug}/", body, active_path="/insights/", extra_head=extra_head)
+    write_page(f"insights/{slug}/index.html", html)
+    print(f"  Built: insights/{slug}/index.html")
+
+
 def build_all_extras():
     """Build all placeholder/coming-soon pages."""
     build_companies_index()
@@ -264,4 +417,5 @@ def build_all_extras():
     build_conferences_index()
     build_insights_index()
     build_jobs_index()
-    return 5
+    build_insight_se_to_gtm_engineer()
+    return 6
