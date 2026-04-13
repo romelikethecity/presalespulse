@@ -2325,10 +2325,117 @@ def build_sitemap():
 
 
 def build_robots():
-    content = f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n"
+    content = f"""User-agent: *
+Allow: /
+
+Sitemap: {SITE_URL}/sitemap.xml
+
+# AI/LLM crawlers - explicitly allowed for AI search citations
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+"""
     with open(os.path.join(OUTPUT_DIR, "robots.txt"), "w", encoding="utf-8") as f:
         f.write(content)
     print("  Built: robots.txt")
+
+
+def build_llms_txt():
+    content = f"""# PreSales Pulse
+
+> PreSales Pulse is an independent career intelligence platform for Solutions Engineers, Sales Engineers, and Solutions Consultants. The site provides salary benchmarks by seniority, location, and company stage, independent tool reviews for demo platforms, RFP automation, proposal tools, and conversation intelligence software, a searchable glossary of pre-sales terminology, and career guides covering SE career paths, certifications, and role transitions. All data is updated weekly and free to access.
+
+## Core Pages
+- [Homepage]({SITE_URL}/)
+- [About]({SITE_URL}/about/)
+- [Newsletter]({SITE_URL}/newsletter/)
+
+## Salary Data
+- [Salary Index]({SITE_URL}/salary/): Aggregate SE salary benchmarks
+- [By Seniority]({SITE_URL}/salary/by-seniority/): Junior through Director
+- [By Location]({SITE_URL}/salary/by-location/): 15 major metros + remote
+- [By Company Stage]({SITE_URL}/salary/by-company-stage/): Seed through Enterprise
+- [Salary Calculator]({SITE_URL}/salary/calculator/)
+- [Compensation Structure]({SITE_URL}/salary/compensation-structure/)
+- [SE-to-AE Ratio]({SITE_URL}/salary/se-to-ae-ratio/)
+
+### Salary Comparisons
+- [SE vs AE]({SITE_URL}/salary/comparisons/se-vs-ae/)
+- [SE vs GTM Engineer]({SITE_URL}/salary/comparisons/se-vs-gtm-engineer/)
+- [SE vs CSM]({SITE_URL}/salary/comparisons/se-vs-csm/)
+- [SE vs Product Manager]({SITE_URL}/salary/comparisons/se-vs-product-manager/)
+- [SE vs Solutions Architect]({SITE_URL}/salary/comparisons/se-vs-solutions-architect/)
+
+## Tool Reviews
+- [Tools Index]({SITE_URL}/tools/): All SE tools reviewed
+- [Demo Platforms]({SITE_URL}/tools/category/demo-platforms/)
+- [POC/Trial Management]({SITE_URL}/tools/category/poc-trial/)
+- [Proposal & CPQ]({SITE_URL}/tools/category/proposal-cpq/)
+- [RFP Automation]({SITE_URL}/tools/category/rfp-automation/)
+- [Conversation Intelligence]({SITE_URL}/tools/category/conversation-intelligence/)
+
+### Tool Comparisons
+- [Consensus vs Navattic]({SITE_URL}/tools/compare/consensus-vs-navattic/)
+- [Demostack vs Walnut]({SITE_URL}/tools/compare/demostack-vs-walnut/)
+- [Gong vs Chorus]({SITE_URL}/tools/compare/gong-vs-chorus/)
+- [Lucidchart vs Miro]({SITE_URL}/tools/compare/lucidchart-vs-miro/)
+
+## Career Resources
+- [Career Guides]({SITE_URL}/careers/)
+- [What is a Solutions Engineer?]({SITE_URL}/careers/what-is-solutions-engineer/)
+- [How to Become a Solutions Engineer]({SITE_URL}/careers/how-to-become-solutions-engineer/)
+- [SE Interview Questions]({SITE_URL}/careers/se-interview-questions/)
+- [SE Certification Guide]({SITE_URL}/careers/se-certification-guide/)
+
+## Glossary
+- [Glossary Index]({SITE_URL}/glossary/): Pre-sales terminology defined
+- [Proof of Concept]({SITE_URL}/glossary/proof-of-concept/)
+- [Technical Win]({SITE_URL}/glossary/technical-win/)
+- [Discovery Call]({SITE_URL}/glossary/discovery-call/)
+- [Value Selling]({SITE_URL}/glossary/value-selling/)
+- [Competitive Battlecard]({SITE_URL}/glossary/competitive-battlecard/)
+"""
+    with open(os.path.join(OUTPUT_DIR, "llms.txt"), "w", encoding="utf-8") as f:
+        f.write(content)
+    print("  Built: llms.txt")
 
 
 def main():
@@ -2419,6 +2526,7 @@ def main():
     print("\n  Building meta files...")
     build_sitemap()
     build_robots()
+    build_llms_txt()
 
     with open(os.path.join(OUTPUT_DIR, "CNAME"), "w", encoding="utf-8") as f:
         f.write("presalespulse.com\n")
