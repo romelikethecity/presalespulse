@@ -6,8 +6,8 @@ import json
 
 from nav_config import *
 from templates import (get_page_wrapper, write_page, get_breadcrumb_schema,
-                       get_faq_schema, breadcrumb_html, newsletter_cta_html,
-                       faq_html)
+                       get_faq_schema, get_article_schema, breadcrumb_html,
+                       newsletter_cta_html, faq_html)
 
 
 # ---------------------------------------------------------------------------
@@ -2517,7 +2517,8 @@ def build_career_pages():
         faq_section = faq_html(faq_pairs)
         body = body.replace('\n</div>', f'\n{faq_section}\n</div>', 1)
 
-        extra_head = get_breadcrumb_schema(crumbs) + get_faq_schema(faq_pairs)
+        word_count = len(body.split())
+        extra_head = get_breadcrumb_schema(crumbs) + get_faq_schema(faq_pairs) + get_article_schema(title, description, slug, "2026-04-01", word_count, url_path=f"/careers/{slug}/")
 
         page = get_page_wrapper(
             title=title,
