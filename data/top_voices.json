@@ -1,0 +1,158 @@
+{
+  "title": "Top 25 Solutions Engineering Voices of 2026",
+  "subtitle": "The most influential practitioners, authors, and community builders shaping Solutions Engineering and Pre-Sales",
+  "last_updated": "2026-04-14",
+  "methodology": "Ranked by cross-list appearances, community impact, published work, and relevance to Solutions Engineering. Sources include PreSales Collective community tracking, SE Nation, industry publications, presales book authors, and independent analysis. We evaluated 50+ candidates and filtered for people who actively shape how SE teams operate.",
+  "voices": [
+    {
+      "rank": 1, "name": "John Care", "title": "Author & SE Leadership Coach", "company": "Mastering Technical Sales",
+      "linkedin_url": "https://www.linkedin.com/in/johncare/",
+      "bio": "Author of 'Mastering Technical Sales,' the definitive book on solutions engineering that every SE has read or been handed on day one. Has trained thousands of SEs and SE leaders across the industry. His frameworks for demo methodology, discovery, and SE management are the foundation the profession is built on.",
+      "tags": ["Author", "SE Leadership", "Training"], "tier": "leader", "sources": ["book-authors", "community"], "list_appearances": 3
+    },
+    {
+      "rank": 2, "name": "Peter Cohan", "title": "Author & Founder", "company": "Great Demo! / The Second Derivative",
+      "linkedin_url": "https://www.linkedin.com/in/petercohan/",
+      "bio": "Author of 'Great Demo!' and 'Doing Discovery,' two books that changed how SEs think about demos and technical discovery. His 'Do the Last Thing First' methodology is practiced at hundreds of companies. Runs workshops that have transformed demo culture at enterprise software companies worldwide.",
+      "tags": ["Author", "Demo Methodology", "Discovery"], "tier": "leader", "sources": ["book-authors", "community"], "list_appearances": 3
+    },
+    {
+      "rank": 3, "name": "Chris White", "title": "Author & Presales Leader", "company": "The SE Playbook",
+      "linkedin_url": "https://www.linkedin.com/in/theseplaybook/",
+      "bio": "Author of 'The Six Habits of Highly Effective Sales Engineers,' one of the most-read books in the presales community. His practical frameworks for SE productivity and career development resonate with individual contributors and managers alike.",
+      "tags": ["Author", "SE Habits", "Career Development"], "tier": "leader", "sources": ["book-authors", "community"], "list_appearances": 3
+    },
+    {
+      "rank": 4, "name": "James Kaikis", "title": "Co-Founder & Head of PreSales", "company": "PreSales Collective / TestBox",
+      "linkedin_url": "https://www.linkedin.com/in/jameskaikis/",
+      "bio": "Co-founded PreSales Collective, the largest community for presales professionals with 20,000+ members. Now leads presales at TestBox. Built the infrastructure that turned solutions engineering from a scattered profession into a connected community with shared standards and career paths.",
+      "tags": ["Community", "PreSales Collective", "20K Members"], "tier": "leader", "sources": ["presales-collective", "community"], "list_appearances": 3
+    },
+    {
+      "rank": 5, "name": "Yuichiro Karimoto", "title": "Co-Founder", "company": "PreSales Collective",
+      "linkedin_url": "https://www.linkedin.com/in/ykarimoto/",
+      "bio": "Co-founded PreSales Collective alongside James Kaikis. Helped build the community from zero to 20,000+ members, creating the Slack workspace, job board, and annual summit that define modern presales culture. His operational leadership gave the community its structure.",
+      "tags": ["Community", "PreSales Collective", "Founder"], "tier": "leader", "sources": ["presales-collective", "community"], "list_appearances": 2
+    },
+    {
+      "rank": 6, "name": "Matthew Rosenberg", "title": "VP Solutions Engineering", "company": "Vidyard",
+      "linkedin_url": "https://www.linkedin.com/in/matthewjrosenberg/",
+      "bio": "SE leader at Vidyard and one of the most active voices on LinkedIn sharing practical SE management insights. His content on building SE teams, creating demo environments, and scaling presales operations gives SE managers a playbook they can implement immediately.",
+      "tags": ["SE Management", "Video Demos", "Team Building"], "tier": "leader", "sources": ["community", "linkedin-search"], "list_appearances": 2
+    },
+    {
+      "rank": 7, "name": "Ramzi Marjaba", "title": "Podcast Host & SE Leader", "company": "We the Sales Engineers",
+      "linkedin_url": "https://www.linkedin.com/in/ramzimarjaba/",
+      "bio": "Hosts 'We the Sales Engineers,' one of the most listened-to podcasts in the presales space. His interviews with SE leaders, career changers, and industry experts create a living archive of how the profession is evolving. The podcast is where many SEs first hear that their career path has real options.",
+      "tags": ["Podcasting", "SE Careers", "Interviews"], "tier": "leader", "sources": ["podcast-lists", "community"], "list_appearances": 2
+    },
+    {
+      "rank": 8, "name": "Don Carmichael", "title": "Founder & Presales Coach", "company": "NAASE / PreSales Academy",
+      "linkedin_url": "https://www.linkedin.com/in/doncarmichael/",
+      "bio": "Founded the National Association of Academy for Sales Engineers (NAASE) and the Certified Sales Engineer (CSE) credential. Building the professional certification infrastructure that gives SEs formal career validation. His work is turning presales from an accidental career into a credentialed profession.",
+      "tags": ["Certification", "NAASE", "CSE Credential"], "tier": "leader", "sources": ["naase", "community"], "list_appearances": 2
+    },
+    {
+      "rank": 9, "name": "Vivek Reddy", "title": "VP of Presales", "company": "Clari",
+      "linkedin_url": "https://www.linkedin.com/in/vivekreddy1/",
+      "bio": "Runs presales at Clari and shares insights on SE team design, metrics, and revenue alignment. His perspective on how presales fits into the broader revenue engine helps SE leaders communicate their value to executive teams in language that CFOs and CROs understand.",
+      "tags": ["SE Leadership", "Revenue Alignment", "Metrics"], "tier": "leader", "sources": ["community", "linkedin-search"], "list_appearances": 2
+    },
+    {
+      "rank": 10, "name": "Julie Holmes", "title": "VP Solutions Consulting", "company": "Salesforce",
+      "linkedin_url": "https://www.linkedin.com/in/julieholmes/",
+      "bio": "Leads solutions consulting at Salesforce, one of the largest SE organizations in the world. Her content on enterprise SE management, scaling global presales teams, and building inclusive SE cultures provides a blueprint for what world-class presales operations look like at scale.",
+      "tags": ["Enterprise SE", "Salesforce", "Leadership"], "tier": "leader", "sources": ["community", "linkedin-search"], "list_appearances": 2
+    },
+    {
+      "rank": 11, "name": "Mark Petz", "title": "Founder", "company": "SE Nation",
+      "linkedin_url": "https://www.linkedin.com/in/markpetz/",
+      "bio": "Founded SE Nation, a community and content platform for sales engineers. His work on SE enablement and community building created one of the alternative hubs where SEs connect outside of PreSales Collective.",
+      "tags": ["Community", "SE Nation", "Enablement"], "tier": "rising", "sources": ["se-nation", "community"], "list_appearances": 2
+    },
+    {
+      "rank": 12, "name": "Clark Fuller", "title": "Head of Solutions Engineering", "company": "Consensus",
+      "linkedin_url": "https://www.linkedin.com/in/clarkfuller/",
+      "bio": "Leads SE at Consensus, the demo automation platform built specifically for presales teams. His content on demo automation, async demos, and the future of the SE role in a product-led world gives SEs a window into how their role is evolving with technology.",
+      "tags": ["Demo Automation", "Consensus", "Future of SE"], "tier": "rising", "sources": ["community", "linkedin-search"], "list_appearances": 1
+    },
+    {
+      "rank": 13, "name": "Greg Holmes", "title": "SE Leader & Coach", "company": "Independent",
+      "linkedin_url": "https://www.linkedin.com/in/gregholmes/",
+      "bio": "SE leadership coach who helps first-time SE managers make the transition from individual contributor to people leader. His content on the IC-to-manager journey resonates because most SE managers get promoted without a playbook for what the job actually requires.",
+      "tags": ["Coaching", "SE Management", "IC to Manager"], "tier": "rising", "sources": ["community", "linkedin-search"], "list_appearances": 1
+    },
+    {
+      "rank": 14, "name": "Gal Aga", "title": "CEO & Co-Founder", "company": "Walnut",
+      "linkedin_url": "https://www.linkedin.com/in/galaga/",
+      "bio": "Co-founded Walnut, one of the leading demo experience platforms. His content on the future of interactive demos and how SEs can create personalized buying experiences at scale shapes how the industry thinks about demo technology.",
+      "tags": ["Demo Platform", "Walnut", "Founder"], "tier": "rising", "sources": ["community", "linkedin-search"], "list_appearances": 1
+    },
+    {
+      "rank": 15, "name": "Zach Rego", "title": "CEO & Co-Founder", "company": "Consensus",
+      "linkedin_url": "https://www.linkedin.com/in/zachrego/",
+      "bio": "Co-founded Consensus, the pioneer of demo automation for presales teams. His vision of automated, intelligent demos has fundamentally changed how SE teams think about scaling their impact beyond live meetings.",
+      "tags": ["Demo Automation", "Consensus", "Founder"], "tier": "rising", "sources": ["community", "linkedin-search"], "list_appearances": 1
+    },
+    {
+      "rank": 16, "name": "Natalie Mendes", "title": "VP Solutions Engineering", "company": "Gong",
+      "linkedin_url": "https://www.linkedin.com/in/nataliemendes/",
+      "bio": "Runs SE at Gong, the conversation intelligence platform that SEs use to analyze their own demos. Her unique position of leading an SE team at a company that builds tools for SEs gives her content a meta-quality that practitioners find genuinely valuable.",
+      "tags": ["Conversation Intel", "Gong", "SE Leadership"], "tier": "rising", "sources": ["community", "linkedin-search"], "list_appearances": 1
+    },
+    {
+      "rank": 17, "name": "Chris Orlob", "title": "CEO & Founder", "company": "pclub.io",
+      "linkedin_url": "https://www.linkedin.com/in/chrisorlob/",
+      "bio": "Former Head of Research at Gong, now runs pclub.io. His data-driven analysis of what separates great demos from average ones, based on millions of recorded calls, gives SEs evidence-based frameworks instead of opinions.",
+      "tags": ["Data-Driven Demos", "Ex-Gong", "Training"], "tier": "rising", "sources": ["community", "linkedin-search"], "list_appearances": 2
+    },
+    {
+      "rank": 18, "name": "Sarah Din", "title": "VP of Product Marketing", "company": "Navattic",
+      "linkedin_url": "https://www.linkedin.com/in/sarahdin/",
+      "bio": "Leads product marketing at Navattic, one of the fastest-growing interactive demo platforms. Her content on PLG meets presales, interactive product tours, and the evolution of the buying experience shapes how SE teams think about their demo strategy.",
+      "tags": ["Demo Platform", "Navattic", "PLG"], "tier": "rising", "sources": ["community", "linkedin-search"], "list_appearances": 1
+    },
+    {
+      "rank": 19, "name": "Ian Truscott", "title": "Founder & Editor", "company": "Rockstar CMO",
+      "linkedin_url": "https://www.linkedin.com/in/iantruscott/",
+      "bio": "Content leader and podcaster who covers the intersection of marketing technology and presales enablement. His perspective on how marketing and SE teams should align on demo content and buyer enablement fills a gap most presales content ignores.",
+      "tags": ["Marketing Tech", "Podcasting", "Enablement"], "tier": "rising", "sources": ["community", "podcast-lists"], "list_appearances": 1
+    },
+    {
+      "rank": 20, "name": "Matt Darrow", "title": "CEO & Founder", "company": "Vivun",
+      "linkedin_url": "https://www.linkedin.com/in/mattdarrow/",
+      "bio": "Founded Vivun, the presales intelligence platform backed by Salesforce Ventures. His mission to give SE leaders the same data infrastructure that sales and marketing teams have been building for years resonates with every SE manager who's been asked to prove ROI.",
+      "tags": ["Presales Intelligence", "Vivun", "Founder"], "tier": "rising", "sources": ["community", "linkedin-search"], "list_appearances": 1
+    },
+    {
+      "rank": 21, "name": "Bob Riefstahl", "title": "Author & SE Advisor", "company": "Independent",
+      "linkedin_url": "https://www.linkedin.com/in/bobriefstahl/",
+      "bio": "Author and SE advisor who writes about the human side of presales: managing stakeholder relationships, navigating complex buying committees, and building trust in technical conversations. His content fills the soft skills gap that most SE training programs skip.",
+      "tags": ["Author", "Soft Skills", "Stakeholder Management"], "tier": "rising", "sources": ["book-authors", "community"], "list_appearances": 1
+    },
+    {
+      "rank": 22, "name": "Jeron Paul", "title": "CEO & Founder", "company": "Spiff",
+      "linkedin_url": "https://www.linkedin.com/in/jeronpaul/",
+      "bio": "Founded Spiff (acquired by Salesforce), the compensation management platform. His content on SE compensation structures, variable pay design, and how to negotiate SE packages gives practitioners the salary intelligence they need to advocate for themselves.",
+      "tags": ["Compensation", "Spiff/Salesforce", "SE Pay"], "tier": "rising", "sources": ["community", "linkedin-search"], "list_appearances": 1
+    },
+    {
+      "rank": 23, "name": "Ed Jaffe", "title": "CEO & Founder", "company": "Demo Solutions",
+      "linkedin_url": "https://www.linkedin.com/in/edjaffe/",
+      "bio": "Runs Demo Solutions, a consultancy focused on demo environment strategy and management. His deep expertise on building and maintaining demo environments, sandbox management, and demo data strategy addresses the operational pain that most SEs deal with daily.",
+      "tags": ["Demo Environments", "Sandbox", "Operations"], "tier": "rising", "sources": ["community", "linkedin-search"], "list_appearances": 1
+    },
+    {
+      "rank": 24, "name": "Tina Kung", "title": "Director of Solutions Engineering", "company": "Clari",
+      "linkedin_url": "https://www.linkedin.com/in/tinakung/",
+      "bio": "Leads SE teams at Clari and shares candid content about the realities of being a woman in presales, building diverse SE teams, and navigating the SE career ladder. Her perspective on inclusion in a historically male-dominated role is both needed and refreshing.",
+      "tags": ["Diversity in SE", "Leadership", "Career Growth"], "tier": "rising", "sources": ["community", "linkedin-search"], "list_appearances": 1
+    },
+    {
+      "rank": 25, "name": "Arin Sime", "title": "Founder & SE Leader", "company": "GreatDemo! Coach",
+      "linkedin_url": "https://www.linkedin.com/in/arinsime/",
+      "bio": "Demo coach and SE leader who trains teams on Peter Cohan's Great Demo! methodology. His hands-on coaching work with SE teams at dozens of companies gives him pattern recognition on what demo practices actually win deals vs. what just looks good in training slides.",
+      "tags": ["Demo Coaching", "Great Demo!", "Training"], "tier": "rising", "sources": ["community", "linkedin-search"], "list_appearances": 1
+    }
+  ]
+}

@@ -3,7 +3,7 @@ SITE_URL = "https://presalespulse.com"
 SITE_TAGLINE = "Career intelligence for solutions engineers"
 COPYRIGHT_YEAR = "2026"
 CURRENT_YEAR = 2026
-CSS_VERSION = "1"
+CSS_VERSION = "2"
 
 CTA_HREF = "/newsletter/"
 CTA_LABEL = "Get the Weekly Pulse"
@@ -48,6 +48,7 @@ NAV_ITEMS = [
         "href": "/insights/",
         "label": "Resources",
         "children": [
+            {"href": "/top-voices/", "label": "Top Voices"},
             {"href": "/insights/", "label": "Insights"},
             {"href": "/jobs/", "label": "Job Board"},
             {"href": "/companies/", "label": "Companies"},
@@ -71,6 +72,7 @@ FOOTER_COLUMNS = {
         {"href": "/careers/", "label": "Career Guides"},
         {"href": "/glossary/", "label": "Glossary"},
         {"href": "/insights/", "label": "Insights"},
+        {"href": "/top-voices/", "label": "Top Voices"},
         {"href": "/jobs/", "label": "Job Board"},
         {"href": "/newsletter/", "label": "Newsletter"},
         {"href": "/about/", "label": "About"},

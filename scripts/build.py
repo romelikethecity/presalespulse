@@ -2438,6 +2438,168 @@ def build_llms_txt():
     print("  Built: llms.txt")
 
 
+def build_top_voices():
+    """Build the Top 25 Solutions Engineering Voices page."""
+    data_path = os.path.join(PROJECT_DIR, "data", "top_voices.json")
+    if not os.path.exists(data_path):
+        print("  SKIP top voices (no data file)")
+        return
+    with open(data_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    voices = data["voices"]
+    leaders = [v for v in voices if v.get("tier") == "leader"]
+    rising = [v for v in voices if v.get("tier") == "rising"]
+    last_updated = data.get("last_updated", BUILD_DATE)
+
+    title = "Top 25 SE Voices of 2026"
+    meta_desc = pad_description(
+        "Data-driven rankings of the 25 most influential Solutions Engineers, "
+        "authors, and community builders shaping presales. Updated for 2026."
+    )
+
+    crumbs = [("Home", "/"), ("Top Voices", None)]
+    bc_html = breadcrumb_html(crumbs)
+    bc_schema = get_breadcrumb_schema(crumbs)
+
+    # ItemList schema
+    list_items = ""
+    for v in voices:
+        list_items += f'''
+        {{"@type":"ListItem","position":{v["rank"]},"item":{{"@type":"Person","name":"{v["name"]}","jobTitle":"{v["title"]}","worksFor":{{"@type":"Organization","name":"{v["company"]}"}},"url":"{v["linkedin_url"]}"}}}},'''
+    list_items = list_items.rstrip(",")
+    list_schema = f'''<script type="application/ld+json">
+{{"@context":"https://schema.org","@type":"ItemList","name":"{data["title"]}","numberOfItems":{len(voices)},"itemListElement":[{list_items}]}}
+</script>'''
+
+    article_obj = {
+        "@context": "https://schema.org", "@type": "Article",
+        "headline": data["title"],
+        "description": meta_desc,
+        "author": {"@type": "Person", "name": "Rome Thorndike", "url": f"{SITE_URL}/about/"},
+        "publisher": {"@type": "Organization", "name": SITE_NAME, "url": SITE_URL},
+        "datePublished": "2026-04-14", "dateModified": last_updated,
+        "url": f"{SITE_URL}/top-voices/",
+        "mainEntityOfPage": {"@type": "WebPage", "@id": f"{SITE_URL}/top-voices/"},
+    }
+    article_schema = f'    <script type="application/ld+json">{json.dumps(article_obj)}</script>\n'
+
+    def voice_card(v):
+        tags_html = "".join(f'<span class="voice-tag">{t}</span>' for t in v.get("tags", []))
+        rank_class = "voice-rank-top" if v["rank"] <= 3 else "voice-rank"
+        return f'''<div class="voice-card" id="voice-{v["rank"]}">
+    <div class="voice-card-header">
+        <div class="{rank_class}">#{v["rank"]}</div>
+        <div class="voice-card-info">
+            <h3 class="voice-name"><a href="{v["linkedin_url"]}" target="_blank" rel="noopener">{v["name"]}</a></h3>
+            <p class="voice-title">{v["title"]} at {v["company"]}</p>
+            <div class="voice-tags">{tags_html}</div>
+        </div>
+        <a href="{v["linkedin_url"]}" target="_blank" rel="noopener" class="voice-linkedin-btn" aria-label="View {v["name"]} on LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+    </div>
+    <p class="voice-bio">{v["bio"]}</p>
+</div>'''
+
+    leaders_html = "".join(voice_card(v) for v in leaders)
+    rising_html = "".join(voice_card(v) for v in rising)
+    jump_links = "".join(f'<a href="#voice-{v["rank"]}" class="voice-jump-link">#{v["rank"]} {v["name"].split()[0]}</a>' for v in voices)
+
+    methodology_html = f'''<details class="voice-methodology">
+    <summary><strong>How We Ranked These Voices</strong></summary>
+    <div class="methodology-content">
+        <p>{data.get("methodology", "")}</p>
+        <p>We evaluated candidates across five dimensions:</p>
+        <ul>
+            <li><strong>Topic relevance</strong> (required): Must actively contribute to the presales/SE profession.</li>
+            <li><strong>Published work</strong> (30%): Books, courses, certifications that advance the profession.</li>
+            <li><strong>Community impact</strong> (25%): Building communities, hosting podcasts, mentoring.</li>
+            <li><strong>Content frequency</strong> (25%): Regular posting cadence with practical SE content.</li>
+            <li><strong>Originality</strong> (20%): Original frameworks, methodologies, and insights.</li>
+        </ul>
+        <p>This list is updated annually. <a href="/newsletter/">Subscribe to PreSales Pulse</a> to get notified when we refresh the rankings.</p>
+    </div>
+</details>'''
+
+    body = f'''{bc_html}
+<section class="salary-header">
+    <div class="salary-header-inner">
+        <div class="salary-eyebrow">2026 RANKINGS</div>
+        <h1>{data["title"]}</h1>
+        <p>{data.get("subtitle", "")}</p>
+        <p style="font-size: 0.85rem; color: var(--psp-text-tertiary);">Last updated: {last_updated} &middot; {len(voices)} voices ranked</p>
+    </div>
+</section>
+
+<div class="salary-content" style="max-width: 800px; margin: 0 auto;">
+    {methodology_html}
+
+    <div class="voices-jump-nav">
+        {jump_links}
+    </div>
+
+    <h2 class="voices-section-heading">Top 10 Leaders</h2>
+    <p>The most recognized voices shaping Solutions Engineering today.</p>
+    <div class="voices-grid">
+        {leaders_html}
+    </div>
+
+    <h2 class="voices-section-heading">Rising Voices (11-25)</h2>
+    <p>Practitioners and thought leaders gaining momentum in the SE community.</p>
+    <div class="voices-grid">
+        {rising_html}
+    </div>
+</div>
+
+{newsletter_cta_html("Get weekly SE career intelligence from the voices shaping the profession.")}
+
+<section style="text-align: center; padding: var(--psp-space-8) var(--psp-space-4); max-width: 600px; margin: 0 auto;">
+    <h2>Made the List?</h2>
+    <p style="color: var(--psp-text-secondary);">Share it. Tag us on LinkedIn. We will amplify your post.</p>
+    <p style="color: var(--psp-text-secondary);">Know someone who should be on next year's list? <a href="mailto:rome@getprovyx.com">Let us know</a>.</p>
+</section>
+'''
+
+    extra_head = bc_schema + list_schema + article_schema + '''<style>
+.voice-methodology { margin-bottom: var(--psp-space-8); border: 1px solid var(--psp-border); border-radius: var(--psp-radius-lg); background: var(--psp-bg-surface); }
+.voice-methodology summary { padding: var(--psp-space-4); cursor: pointer; font-size: 1rem; color: var(--psp-text-primary); }
+.voice-methodology summary:hover { color: var(--psp-accent); }
+.methodology-content { padding: 0 var(--psp-space-4) var(--psp-space-4); font-size: 0.9rem; color: var(--psp-text-secondary); line-height: 1.7; }
+.methodology-content ul { padding-left: var(--psp-space-4); margin: 0.75rem 0; }
+.methodology-content li { margin-bottom: 0.5rem; }
+.voices-jump-nav { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-bottom: var(--psp-space-8); padding: var(--psp-space-3); background: var(--psp-accent-subtle); border-radius: var(--psp-radius-lg); }
+.voice-jump-link { font-size: 0.75rem; font-family: "Source Code Pro", monospace; padding: 0.25rem 0.5rem; border-radius: var(--psp-radius-sm); color: var(--psp-text-secondary); text-decoration: none; transition: background 0.15s, color 0.15s; }
+.voice-jump-link:hover { background: var(--psp-accent); color: #fff; }
+.voices-section-heading { font-size: 1.25rem; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--psp-accent); }
+.voices-grid { display: flex; flex-direction: column; gap: var(--psp-space-4); margin-bottom: var(--psp-space-8); }
+.voice-card { border: 1px solid var(--psp-border); border-radius: var(--psp-radius-lg); background: var(--psp-bg-surface); padding: var(--psp-space-4); transition: border-color 0.2s, box-shadow 0.2s; }
+.voice-card:hover { border-color: var(--psp-accent); box-shadow: 0 2px 12px rgba(30, 58, 95, 0.08); }
+.voice-card-header { display: flex; align-items: flex-start; gap: 0.75rem; }
+.voice-rank, .voice-rank-top { font-family: "Source Code Pro", monospace; font-weight: 700; font-size: 1.1rem; min-width: 2.5rem; text-align: center; flex-shrink: 0; padding-top: 0.15rem; color: var(--psp-text-tertiary); }
+.voice-rank-top { color: var(--psp-accent); font-size: 1.25rem; }
+.voice-card-info { flex: 1; min-width: 0; }
+.voice-name { font-size: 1.1rem; font-weight: 600; margin: 0 0 0.25rem; line-height: 1.3; }
+.voice-name a { color: var(--psp-text-primary); text-decoration: none; }
+.voice-name a:hover { color: var(--psp-accent); }
+.voice-title { font-size: 0.85rem; color: var(--psp-text-secondary); margin: 0 0 0.5rem; }
+.voice-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.voice-tag { font-size: 0.7rem; font-family: "Source Code Pro", monospace; padding: 0.15rem 0.5rem; border-radius: 999px; background: var(--psp-accent-subtle); color: var(--psp-accent); font-weight: 500; }
+.voice-linkedin-btn { flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; border-radius: var(--psp-radius-sm); color: var(--psp-text-tertiary); text-decoration: none; transition: color 0.15s, background 0.15s; }
+.voice-linkedin-btn:hover { color: #0077B5; background: rgba(0, 119, 181, 0.08); }
+.voice-bio { margin: 0.75rem 0 0; font-size: 0.9rem; color: var(--psp-text-secondary); line-height: 1.7; padding-left: calc(2.5rem + 0.75rem); }
+@media (max-width: 640px) { .voice-bio { padding-left: 0; } .voice-card-header { flex-wrap: wrap; } .voice-card { position: relative; } .voice-linkedin-btn { position: absolute; top: var(--psp-space-3); right: var(--psp-space-3); } .voices-jump-nav { display: none; } }
+</style>'''
+
+    page = get_page_wrapper(
+        title=title, description=meta_desc, canonical_path="/top-voices/",
+        body_content=body, active_path="/top-voices/",
+        extra_head=extra_head, body_class="page-inner",
+    )
+    write_page("top-voices/index.html", page)
+    print(f"  Built: top-voices/index.html ({len(voices)} voices)")
+
+
 def main():
     print(f"Building {SITE_NAME}...")
 
@@ -2509,6 +2671,10 @@ def main():
     print("\n  Building extra pages...")
     extras_count = build_all_extras()
     print(f"  Built {extras_count} extra pages")
+
+    # Build top voices
+    print("\n  Building top voices...")
+    build_top_voices()
 
     # Register all pages for OG image generation
     print("\n  Registering OG pages...")
