@@ -1097,6 +1097,27 @@ def build_homepage(market_data, comp_data):
     </div>
 </section>
 
+<section class="popular-pages">
+    <div class="popular-pages-inner">
+        <h2>Popular Pages</h2>
+        <p class="popular-pages-subtitle">The most-read SE salary data, tool comparisons, and career guides on the site.</p>
+        <div class="popular-pages-grid">
+            <a href="/salary/by-seniority/senior/" class="popular-page-link"><span class="page-tag">Salary</span><br>Senior Solutions Engineer Salary</a>
+            <a href="/salary/by-seniority/principal-staff/" class="popular-page-link"><span class="page-tag">Salary</span><br>Principal/Staff SE Salary</a>
+            <a href="/salary/by-location/san-francisco/" class="popular-page-link"><span class="page-tag">Salary</span><br>SE Salary in San Francisco</a>
+            <a href="/salary/by-location/remote/" class="popular-page-link"><span class="page-tag">Salary</span><br>Remote SE Salary Data</a>
+            <a href="/salary/calculator/" class="popular-page-link"><span class="page-tag">Salary</span><br>SE Salary Calculator</a>
+            <a href="/tools/compare/consensus-vs-navattic/" class="popular-page-link"><span class="page-tag">Compare</span><br>Consensus vs Navattic</a>
+            <a href="/tools/compare/gong-vs-chorus/" class="popular-page-link"><span class="page-tag">Compare</span><br>Gong vs Chorus</a>
+            <a href="/tools/compare/demostack-vs-walnut/" class="popular-page-link"><span class="page-tag">Compare</span><br>Demostack vs Walnut</a>
+            <a href="/careers/what-is-solutions-engineer/" class="popular-page-link"><span class="page-tag">Career</span><br>What is a Solutions Engineer?</a>
+            <a href="/careers/se-interview-questions/" class="popular-page-link"><span class="page-tag">Career</span><br>SE Interview Questions</a>
+            <a href="/careers/sdr-to-solutions-engineer/" class="popular-page-link"><span class="page-tag">Career</span><br>SDR to SE Career Switch</a>
+            <a href="/careers/solutions-engineer-vs-sales-engineer/" class="popular-page-link"><span class="page-tag">Career</span><br>Solutions Engineer vs Sales Engineer</a>
+        </div>
+    </div>
+</section>
+
 '''
     body += newsletter_cta_html()
 

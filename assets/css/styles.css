@@ -1294,3 +1294,67 @@ body.page-home .main-content {
         flex-direction: column;
     }
 }
+
+/* ---- Popular Pages (homepage) ---- */
+.popular-pages {
+    padding: var(--psp-space-12) 0;
+    background: var(--psp-bg-primary);
+}
+
+.popular-pages-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 var(--psp-space-6);
+}
+
+.popular-pages-inner h2 {
+    text-align: center;
+    margin-bottom: var(--psp-space-2);
+}
+
+.popular-pages-subtitle {
+    text-align: center;
+    color: var(--psp-text-secondary);
+    margin-bottom: var(--psp-space-8);
+}
+
+.popular-pages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--psp-space-3);
+}
+
+.popular-page-link {
+    display: block;
+    padding: var(--psp-space-4) var(--psp-space-6);
+    background: var(--psp-bg-surface);
+    border: 1px solid var(--psp-border);
+    border-radius: var(--psp-radius-lg);
+    text-decoration: none;
+    color: var(--psp-text-primary);
+    font-weight: var(--psp-weight-semibold);
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.popular-page-link:hover {
+    border-color: var(--psp-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.popular-page-link .page-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--psp-accent);
+    margin-bottom: var(--psp-space-1);
+}
+
+@media (max-width: 640px) {
+    .popular-pages-grid {
+        grid-template-columns: 1fr;
+    }
+}
