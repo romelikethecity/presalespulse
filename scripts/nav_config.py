@@ -83,9 +83,11 @@ FOOTER_COLUMNS = {
         {"href": "/salary/methodology/", "label": "Methodology"},
     ],
     "SE Tools & Resources": [
+        {"href": "https://thegtmindex.com", "label": "The GTM Index", "external": True},
         {"href": "https://gtmepulse.com", "label": "GTME Pulse", "external": True},
         {"href": "https://thecspulse.com", "label": "The CS Pulse", "external": True},
         {"href": "https://therevopsreport.com", "label": "RevOps Report", "external": True},
         {"href": "https://b2bsalestools.com", "label": "B2B Sales Tools", "external": True},
+        {"href": "https://senablers.com", "label": "SE Nablers", "external": True},
     ],
 }
