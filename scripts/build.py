@@ -1167,13 +1167,19 @@ def build_about():
         <li><strong><a href="/newsletter/">Weekly newsletter</a></strong> with salary shifts, tool intel, and job market data</li>
     </ul>
     <h2>Built By</h2>
-    <p><strong>Rome Thorndike</strong> builds data products for B2B sales teams. PreSales Pulse is one of several career intelligence sites he maintains for technical go-to-market roles, including <a href="https://gtmepulse.com" target="_blank" rel="noopener">GTME Pulse</a> (for GTM Engineers) and <a href="https://thecspulse.com" target="_blank" rel="noopener">The CS Pulse</a> (for Customer Success professionals).</p>
+    <p><strong>Rome Thorndike</strong> is the founder of PreSales Pulse and VP of Revenue at Firmograph.ai. He has directly managed solution engineering and pre-sales teams, building demo environments, developing SE scripts, and establishing best practices for technical selling. Over 15+ years in B2B sales and revenue leadership at Salesforce, Microsoft, Snapdocs (Sequoia-backed), and Datajoy (acquired by Databricks), Rome has worked alongside and led SE teams across complex enterprise deals. He holds an MBA from UC Berkeley's Haas School of Business. He built PreSales Pulse because pre-sales professionals are the backbone of enterprise software sales and deserve dedicated career intelligence.</p>
+    <p><a href="https://www.linkedin.com/in/romethorndike/" target="_blank" rel="noopener">Connect with Rome on LinkedIn</a></p>
 </div>
 '''
+
+    person_schema = '''<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Rome Thorndike","url":"https://www.linkedin.com/in/romethorndike/","jobTitle":"VP of Revenue","worksFor":{"@type":"Organization","name":"Firmograph.ai"},"alumniOf":{"@type":"EducationalOrganization","name":"UC Berkeley Haas School of Business"}}
+</script>'''
+
     page = get_page_wrapper(
         title=title, description=description, canonical_path="/about/",
         body_content=body, active_path="/about/",
-        extra_head=get_breadcrumb_schema(crumbs), body_class="page-inner",
+        extra_head=get_breadcrumb_schema(crumbs) + person_schema, body_class="page-inner",
     )
     write_page("about/index.html", page)
     register_og("about/index.html", title, "Independent career intelligence for Solutions Engineers")
