@@ -1051,10 +1051,19 @@ def _get_related_terms_html(current_slug, related_slugs):
 </section>'''
 
 
+def _all_terms_combined():
+    """Combine in-module GLOSSARY_TERMS with programmatic NEW_GLOSSARY_TERMS."""
+    try:
+        from programmatic_pages import NEW_GLOSSARY_TERMS
+    except ImportError:
+        NEW_GLOSSARY_TERMS = []
+    return list(GLOSSARY_TERMS) + list(NEW_GLOSSARY_TERMS)
+
+
 def _letter_groups():
-    """Group terms by first letter for the index page."""
+    """Group all terms (built-in + programmatic) by first letter for the index page."""
     groups = {}
-    for t in GLOSSARY_TERMS:
+    for t in _all_terms_combined():
         letter = t["term"][0].upper()
         if letter not in groups:
             groups[letter] = []
@@ -1068,10 +1077,11 @@ def _letter_groups():
 
 def build_glossary_index():
     """Generate /glossary/ index page with all terms grouped alphabetically and by category."""
-    title = "PreSales Glossary - 40 SE Terms Defined"
+    total_terms = len(_all_terms_combined())
+    title = f"PreSales Glossary - {total_terms} SE Terms Defined"
     description = (
-        "A practitioner glossary of pre-sales terms. Clear definitions for POC, technical win,"
-        " MEDDPICC, discovery calls, and 36 more concepts every SE should know."
+        f"A practitioner glossary of pre-sales terms. Clear definitions for POC, technical win,"
+        f" MEDDPICC, discovery calls, and {total_terms - 4} more concepts every SE should know."
     )
 
     crumbs = [("Home", "/"), ("Glossary", None)]
@@ -1120,7 +1130,7 @@ def build_glossary_index():
     body = f'''<div class="salary-content">
     {breadcrumb_html(crumbs)}
     <h1>PreSales Glossary for Solutions Engineers</h1>
-    <p class="lead">Clear, practical definitions for 40 pre-sales terms. Written by SEs, for SEs. No buzzword soup.</p>
+    <p class="lead">Clear, practical definitions for {total_terms} pre-sales terms. Written by SEs, for SEs. No buzzword soup.</p>
     {category_html}
     <h2>All Terms A-Z</h2>
     {letter_nav}

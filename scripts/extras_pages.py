@@ -257,6 +257,40 @@ def build_insights_index():
         {article_cards}
     </div>
 
+    <h2>SE by Industry</h2>
+    <p>Industry-specific guides covering compensation, demo expectations, POC dynamics, and top employers for SEs working in cybersecurity, fintech, healthcare SaaS, developer tools, data platforms, MLOps, and vertical SaaS.</p>
+
+    <div class="card-grid">
+        <a href="/insights/se-in-cybersecurity/" class="card card--linked">
+            <h3>SE in Cybersecurity</h3>
+            <p>Demo expectations, comp benchmarks ($160K to $230K base), and top employers for cybersecurity SEs.</p>
+        </a>
+        <a href="/insights/se-in-fintech/" class="card card--linked">
+            <h3>SE in Fintech</h3>
+            <p>Compliance dynamics, comp benchmarks ($150K to $220K base), and top employers for fintech SEs.</p>
+        </a>
+        <a href="/insights/se-in-healthcare-saas/" class="card card--linked">
+            <h3>SE in Healthcare SaaS</h3>
+            <p>HIPAA, BAA, long cycles, and the comp benchmarks for SEs working in healthcare SaaS.</p>
+        </a>
+        <a href="/insights/se-in-developer-tools/" class="card card--linked">
+            <h3>SE in Developer Tools</h3>
+            <p>Hands-on demos, technical depth required, and comp benchmarks for SEs at devtools companies.</p>
+        </a>
+        <a href="/insights/se-in-data-platforms/" class="card card--linked">
+            <h3>SE in Data Platforms</h3>
+            <p>Architectural depth, integration-heavy POCs, and the comp at Snowflake, Databricks, Confluent, and peers.</p>
+        </a>
+        <a href="/insights/se-in-mlops/" class="card card--linked">
+            <h3>SE in MLOps</h3>
+            <p>ML platform sales, hands-on lifecycle demos, and comp benchmarks for MLOps SEs.</p>
+        </a>
+        <a href="/insights/se-in-vertical-saas/" class="card card--linked">
+            <h3>SE in Vertical SaaS</h3>
+            <p>Industry depth over technical breadth. Comp benchmarks and top employers for vertical SaaS SEs.</p>
+        </a>
+    </div>
+
     <h2>What We Track</h2>
     <p>Weekly job market shifts, SE compensation by stage and seniority, tool adoption across demo platforms and RFP automation, and the operating metrics (ratios, conversion rates, POC win rates) that shape an SE career.</p>
 

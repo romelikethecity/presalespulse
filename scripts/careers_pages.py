@@ -2469,6 +2469,71 @@ def build_careers_index():
         </a>
     </div>
 
+    <h2>Role-Specific Guides</h2>
+
+    <div class="preview-grid">
+        <a href="/careers/senior-solutions-engineer/" class="preview-card">
+            <h3>Senior Solutions Engineer</h3>
+            <p>Comp ($150K to $200K base), day-to-day work, and the move from mid-level SE to Senior.</p>
+            <span class="preview-link">Read the guide &rarr;</span>
+        </a>
+        <a href="/careers/principal-solutions-engineer/" class="preview-card">
+            <h3>Principal Solutions Engineer</h3>
+            <p>Top of the IC track. Comp ($180K to $230K base) and the largest deals on the team.</p>
+            <span class="preview-link">Read the guide &rarr;</span>
+        </a>
+        <a href="/careers/staff-solutions-engineer/" class="preview-card">
+            <h3>Staff Solutions Engineer</h3>
+            <p>Highest senior IC role at companies with deep IC tracks. Comp $195K to $250K base.</p>
+            <span class="preview-link">Read the guide &rarr;</span>
+        </a>
+        <a href="/careers/solutions-engineer-manager/" class="preview-card">
+            <h3>SE Manager</h3>
+            <p>First people-leadership role. Comp ($170K to $230K base) and the shift from doing to enabling.</p>
+            <span class="preview-link">Read the guide &rarr;</span>
+        </a>
+        <a href="/careers/director-of-pre-sales/" class="preview-card">
+            <h3>Director of Pre-Sales</h3>
+            <p>Managing managers, segment ownership, and comp ($200K to $260K base).</p>
+            <span class="preview-link">Read the guide &rarr;</span>
+        </a>
+        <a href="/careers/vp-of-pre-sales/" class="preview-card">
+            <h3>VP of Pre-Sales</h3>
+            <p>Executive ownership of the SE function. Comp $230K to $300K base, board-level work.</p>
+            <span class="preview-link">Read the guide &rarr;</span>
+        </a>
+        <a href="/careers/chief-solutions-officer/" class="preview-card">
+            <h3>Chief Solutions Officer</h3>
+            <p>Rare C-level pre-sales executive role. Comp benchmarks and where the title actually exists.</p>
+            <span class="preview-link">Read the guide &rarr;</span>
+        </a>
+        <a href="/careers/pre-sales-architect/" class="preview-card">
+            <h3>Pre-Sales Architect</h3>
+            <p>Specialist senior IC for the most architecturally complex deals. Comp $180K to $240K base.</p>
+            <span class="preview-link">Read the guide &rarr;</span>
+        </a>
+        <a href="/careers/enterprise-solutions-engineer/" class="preview-card">
+            <h3>Enterprise SE</h3>
+            <p>Segment-specialized senior SE on the largest deals. Comp $170K to $220K base.</p>
+            <span class="preview-link">Read the guide &rarr;</span>
+        </a>
+        <a href="/careers/mid-market-solutions-engineer/" class="preview-card">
+            <h3>Mid-Market SE</h3>
+            <p>The high-volume segment role that builds SE fundamentals fast. Comp $140K to $185K base.</p>
+            <span class="preview-link">Read the guide &rarr;</span>
+        </a>
+        <a href="/careers/partner-solutions-engineer/" class="preview-card">
+            <h3>Partner SE</h3>
+            <p>SE work supporting the partner ecosystem. Comp $145K to $200K base.</p>
+            <span class="preview-link">Read the guide &rarr;</span>
+        </a>
+        <a href="/careers/post-sales-engineer/" class="preview-card">
+            <h3>Post-Sales Engineer</h3>
+            <p>Technical role on the post-sales side. Implementation, customer success engineering, comp $130K to $175K base.</p>
+            <span class="preview-link">Read the guide &rarr;</span>
+        </a>
+    </div>
+
 '''
     body += newsletter_cta_html()
     body += '</div>'

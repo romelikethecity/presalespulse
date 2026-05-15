@@ -22,6 +22,7 @@ from tools_pages import build_all_tools
 from careers_pages import build_all_careers
 from glossary_pages import build_all_glossary
 from extras_pages import build_all_extras
+from programmatic_pages import build_all_programmatic
 
 # OG image generation state
 OG_PAGES = []
@@ -2698,6 +2699,11 @@ def main():
     print("\n  Building extra pages...")
     extras_count = build_all_extras()
     print(f"  Built {extras_count} extra pages")
+
+    # Build programmatic expansion pages (Wave 4)
+    print("\n  Building programmatic expansion pages...")
+    programmatic_count = build_all_programmatic()
+    print(f"  Built {programmatic_count} programmatic pages")
 
     # Build top voices
     print("\n  Building top voices...")

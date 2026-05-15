@@ -2206,6 +2206,30 @@ ALTERNATIVES = [
 # Page generators
 # ---------------------------------------------------------------------------
 
+def _extra_comparison_links_html():
+    """Surface comparison pages defined in programmatic_pages.NEW_COMPARISONS."""
+    try:
+        from programmatic_pages import NEW_COMPARISONS
+    except ImportError:
+        return ""
+    return "".join(
+        f'<a href="/tools/compare/{c["slug"]}/" class="related-link-card">{c["tool_a"]} vs {c["tool_b"]}</a>'
+        for c in NEW_COMPARISONS
+    )
+
+
+def _extra_alternative_links_html():
+    """Surface alternative pages defined in programmatic_pages.NEW_ALTERNATIVES."""
+    try:
+        from programmatic_pages import NEW_ALTERNATIVES
+    except ImportError:
+        return ""
+    return "".join(
+        f'<a href="/tools/alternatives/{a["slug"]}/" class="related-link-card">{a["tool"]} Alternatives</a>'
+        for a in NEW_ALTERNATIVES
+    )
+
+
 def build_tools_index(market_data):
     """Build the main /tools/ index page."""
     total_jobs = market_data.get("total_se_jobs", 4250)
@@ -2256,6 +2280,7 @@ def build_tools_index(market_data):
     <h2>Head&#8209;to&#8209;Head Comparisons</h2>
     <div class="related-links-grid">
         {"".join(f'<a href="/tools/compare/{c["slug"]}/" class="related-link-card">{c["tool_a"]} vs {c["tool_b"]}</a>' for c in COMPARISONS)}
+        {_extra_comparison_links_html()}
     </div>
 
     <h2>Roundup Guides</h2>
@@ -2266,6 +2291,7 @@ def build_tools_index(market_data):
     <h2>Alternatives</h2>
     <div class="related-links-grid">
         {"".join(f'<a href="/tools/alternatives/{a["slug"]}/" class="related-link-card">{a["tool"]} Alternatives</a>' for a in ALTERNATIVES)}
+        {_extra_alternative_links_html()}
     </div>
 
     {source_citation_html()}
