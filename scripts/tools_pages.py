@@ -1667,7 +1667,7 @@ COMPARISONS = [
         "tool_b": "Responsive",
         "title": "Loopio vs Responsive (RFPIO): RFP Tools Compared",
         "body": """<h2>The Two Leaders in RFP Automation</h2>
-<p>Loopio and Responsive (formerly RFPIO) are the clear leaders in RFP automation for SE teams. Both maintain content libraries, use AI to auto-fill responses, and streamline collaboration across SMEs. The choice between them typically comes down to team size, UI preference, and pricing.</p>
+<p>Loopio and Responsive (formerly RFPIO) are the clear leaders in RFP automation for SE teams. Both maintain content libraries, use AI to auto-fill responses, and speed up collaboration across SMEs. The choice between them typically comes down to team size, UI preference, and pricing.</p>
 
 <h2>User Experience</h2>
 <p>Loopio has a more intuitive, modern UI. The content library is easier to navigate, the auto-fill suggestions are clearly presented, and the overall workflow feels cleaner. Responsive's interface is more enterprise-grade: powerful but denser. SE teams that value ease of use consistently prefer Loopio. Teams that need advanced configuration options gravitate toward Responsive.</p>
