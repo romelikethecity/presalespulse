@@ -54,7 +54,7 @@ CAREER_GUIDES = [
     <p>POC management separates mid-level SEs from senior SEs. Anyone can run a demo. Managing a 4-week technical evaluation with 6 stakeholders, 3 integration requirements, and a moving timeline requires project management skills, technical depth, and the ability to maintain momentum when the customer's attention drifts to other priorities.</p>
 
     <h3>RFP and Security Questionnaire Responses</h3>
-    <p>Enterprise buyers send detailed requests for proposal that require technical specificity. SEs own the technical sections of RFPs, working with product, engineering, and security teams to provide accurate answers. This is unglamorous work, but it's essential. A poorly answered RFP can eliminate you from consideration before you ever get a demo. Many SE teams maintain internal knowledge bases and use <a href="/tools/">RFP automation tools</a> to streamline this process.</p>
+    <p>Enterprise buyers send detailed requests for proposal that require technical specificity. SEs own the technical sections of RFPs, working with product, engineering, and security teams to provide accurate answers. This is unglamorous work, but it's essential. A poorly answered RFP can eliminate you from consideration before you ever get a demo. Many SE teams maintain internal knowledge bases and use <a href="/tools/">RFP automation tools</a> to speed up this process.</p>
 
     <p>Security questionnaires are increasingly common and increasingly detailed. SOC 2 compliance, GDPR data handling, encryption standards, penetration testing results, and incident response procedures all fall into the SE's domain (or at least into the SE's responsibility to coordinate responses). Enterprise SEs at companies selling to regulated industries can spend 10-20% of their time on compliance-related documentation.</p>
 
@@ -749,7 +749,7 @@ CAREER_GUIDES = [
         <li>Infrastructure/hardware SEs earn 5-10% less than SaaS equivalents, often offset by higher base-to-variable ratios</li>
     </ul>
 
-    <p>The takeaway: don't choose between roles based on the title. Choose based on the company, product, deal size, and team culture. Those factors determine your compensation and career trajectory far more than whether you're called a Solutions Engineer or a Sales Engineer.</p>
+    <p>Don't choose between roles based on the title. Choose based on the company, product, deal size, and team culture. Those factors determine your compensation and career trajectory far more than whether you're called a Solutions Engineer or a Sales Engineer.</p>
 
     <p>For detailed comp breakdowns by role, see our <a href="/salary/comparisons/">salary comparisons</a>.</p>
 
@@ -933,7 +933,7 @@ CAREER_GUIDES = [
         "title": "Solutions Engineer vs Technical Account Manager",
         "description": "SE is pre-sale technical evaluation. TAM is post-sale ongoing account management. When roles overlap, comp differences, and career transitions explained.",
         "body": """
-    <p>Solutions Engineers and Technical Account Managers both need deep product knowledge and strong customer-facing skills. The fundamental difference is timing: SEs work before the contract is signed, TAMs work after. But the reality is more nuanced than a clean handoff, and understanding where these roles overlap matters for career planning.</p>
+    <p>Solutions Engineers and Technical Account Managers both need deep product knowledge and strong customer-facing skills. The fundamental difference is timing: SEs work before the contract is signed, TAMs work after. But the reality is messier than a clean handoff, and understanding where these roles overlap matters for career planning.</p>
 
     <h2>Core Difference</h2>
 
@@ -1188,7 +1188,7 @@ CAREER_GUIDES = [
 
     <h2>Compensation Impact</h2>
 
-    <p>The comp change is nuanced. Base salary typically goes up. Variable comp goes down. Total comp stays roughly flat or decreases slightly.</p>
+    <p>The comp shifts in opposite directions. Base salary typically goes up. Variable comp goes down. Total comp stays roughly flat or decreases slightly.</p>
 
     <table class="data-table">
         <thead>
@@ -2210,7 +2210,7 @@ CAREER_GUIDES = [
     <p>At 1:2, you know every deal intimately. You've done discovery, you've built custom demos, and you have relationships with the technical buyers. Your AEs trust your judgment on deal strategy because you're deeply involved. This is the ratio where SEs can do their best work and have the most impact per deal.</p>
 
     <h3>At 1:3 (Manageable with Discipline)</h3>
-    <p>You support 3 AEs and 10 to 15 active deals. Customization drops. You can't build prospect-specific demo environments for every deal. You'll develop templates, reusable demo flows, and standard discovery frameworks to scale your effort. This ratio works well for mid-market SEs with streamlined products. It starts to strain for complex enterprise products.</p>
+    <p>You support 3 AEs and 10 to 15 active deals. Customization drops. You can't build prospect-specific demo environments for every deal. You'll develop templates, reusable demo flows, and standard discovery frameworks to scale your effort. This ratio works well for mid-market SEs with simpler products. It starts to strain for complex enterprise products.</p>
 
     <p>The key to surviving 1:3 is prioritization. Not every deal deserves the same SE effort. Develop a deal scoring system with your AEs: high-priority deals (large ACV, competitive evaluation, POC required) get full SE engagement. Medium-priority deals get standard demos. Low-priority deals get self-serve resources (recorded demos, documentation, product tours). This tiering system is what separates SEs who thrive at 1:3 from those who burn out.</p>
 

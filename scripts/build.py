@@ -336,7 +336,7 @@ SALARY_BY_LOCATION = {
         "context": [
             "Denver has grown into a solid secondary market for SEs, attracting both companies and talent who want a mountain-west lifestyle without giving up competitive compensation. The city's tech sector is anchored by a mix of enterprise companies (Arrow Electronics, Oracle's Denver office, Ping Identity) and a growing cluster of growth-stage SaaS companies. The outdoor lifestyle is a genuine draw for SEs relocating from coastal markets, and companies in Denver lean into that as a recruiting advantage.",
             "SE compensation in Denver sits in the $140K to $205K range, which is 10 to 15% below equivalent roles in SF or Seattle. Colorado's state income tax (4.4% flat) is moderate, and the cost of living, while rising, remains meaningfully below coastal cities. For SEs doing the math, a $170K offer in Denver often provides comparable or better quality of life than $195K in SF, especially for those with families or those who value outdoor recreation access.",
-            "The Denver market is still developing its SE talent density. Companies hiring SEs in Denver sometimes struggle to find experienced candidates locally and end up recruiting from SF, NYC, or Seattle. That scarcity dynamic benefits candidates: if you're an experienced SE willing to relocate to Denver, you have negotiating leverage that wouldn't exist in more saturated markets.",
+            "The Denver market is still developing its SE talent density. Companies hiring SEs in Denver sometimes struggle to find experienced candidates locally and end up recruiting from SF, NYC, or Seattle. That scarcity dynamic benefits candidates: if you're an experienced SE willing to relocate to Denver, you have a negotiating position that wouldn't exist in more saturated markets.",
         ],
         "drivers": [
             "Colorado's 4.4% flat income tax is favorable compared to coastal states",
@@ -400,7 +400,7 @@ SALARY_BY_LOCATION = {
             "Spanish fluency commands a $10K to $15K premium for roles covering Latin American markets",
             "Fintech and crypto companies drive the highest SE salaries in Miami",
             "Companies relocating from SF or NYC often bring coastal comp benchmarks to Miami offices",
-            "The smaller SE talent pool gives experienced candidates stronger negotiating leverage",
+            "The smaller SE talent pool gives experienced candidates a stronger negotiating position",
         ],
         "cost_of_living": "Miami's cost of living is approximately 25% above the US average, driven by rapidly rising housing costs. Median 1-bedroom rent in the city runs around $2,200/month. No state income tax partially offsets the housing premium. A $160K salary in Miami provides roughly equivalent purchasing power to $175K in NYC or $185K in SF after accounting for taxes and housing.",
     },
@@ -435,7 +435,7 @@ SALARY_BY_LOCATION = {
         ],
         "drivers": [
             "Oregon state income tax (9 to 9.9%) is on the higher side, partially offsetting the cost-of-living advantage",
-            "Limited local talent pool gives experienced candidates strong negotiating leverage",
+            "Limited local talent pool gives experienced candidates a strong negotiating position",
             "Remote-friendly culture means most Portland SE roles offer full flexibility",
             "Intel and Nike's digital operations anchor the enterprise SE market locally",
             "Quality of life (outdoor access, food scene, moderate housing costs) is a genuine recruiting tool for Portland-based companies",
@@ -495,7 +495,7 @@ SALARY_BY_LOCATION = {
             "Defense and aerospace companies pay well for SEs with active security clearances",
             "California state income tax (9 to 13%) reduces take-home pay compared to zero-tax states",
             "Qualcomm and Illumina set the local enterprise SE comp benchmark",
-            "Smaller market means less competition for senior SE roles, giving candidates more leverage",
+            "Smaller market means less competition for senior SE roles, giving candidates a stronger negotiating position",
         ],
         "cost_of_living": "San Diego's cost of living is approximately 40% above the US average. Median 1-bedroom rent runs around $2,100/month, roughly 30% below SF. California state income tax applies at the same rates as SF and LA. A $175K salary in San Diego provides roughly equivalent purchasing power to $150K in Austin or $145K in Atlanta.",
     },
@@ -653,7 +653,7 @@ SALARY_COMPARISONS = {
         "role_b_salary": {"min": 90000, "max": 250000, "median": 135000},
         "context": [
             "Solutions Engineers and GTM Engineers both sit at the intersection of sales and technology, but they work on fundamentally different parts of the funnel. SEs work the middle and bottom of the funnel: discovery calls, demos, POCs, and technical evaluations for qualified prospects. GTM Engineers work the top of the funnel: building automated outbound systems, enrichment pipelines, and data infrastructure that generate the qualified leads SEs eventually work. They're complementary roles, not competing ones.",
-            "The $20K median gap ($155K for SEs versus $135K for GTM Engineers) reflects two things. First, the SE role is more established, with decades of history and well-defined career paths. GTM Engineering emerged in 2023 to 2024 and is still defining its compensation norms. Second, SEs directly influence deal outcomes (technical wins, POC successes, competitive victories), which gives them clearer revenue attribution and stronger negotiation leverage. GTM Engineers generate pipeline at scale, but the revenue attribution is less direct.",
+            "The $20K median gap ($155K for SEs versus $135K for GTM Engineers) reflects two things. First, the SE role is more established, with decades of history and well-defined career paths. GTM Engineering emerged in 2023 to 2024 and is still defining its compensation norms. Second, SEs directly influence deal outcomes (technical wins, POC successes, competitive victories), which gives them clearer revenue attribution and a stronger negotiating position. GTM Engineers generate pipeline at scale, but the revenue attribution is less direct.",
             "Skills overlap between the two roles is increasing. Both need API literacy, CRM expertise, and the ability to translate between technical and business contexts. SEs who learn automation tools (Clay, Make, n8n) and data enrichment become more valuable because they can support deal-level personalization. GTM Engineers who understand the SE's needs (what makes a qualified prospect, which technical signals matter) build better pipeline. Companies that integrate the two functions outperform those that silo them.",
         ],
         "key_differences": [
@@ -2291,7 +2291,7 @@ def build_salary_ae_ratio():
     </ul>
 
     <h2>Comp Impact</h2>
-    <p>Our data shows a clear correlation between SE-to-AE ratio and compensation. SEs at companies with 1:1 or 1:2 ratios earn 10 to 15% above the median for their seniority level. SEs at companies with 1:4+ ratios earn 5 to 10% below median. The mechanism is straightforward: lower ratios mean more deal influence, which means clearer revenue attribution, which means stronger compensation negotiation leverage.</p>
+    <p>Our data shows a clear correlation between SE-to-AE ratio and compensation. SEs at companies with 1:1 or 1:2 ratios earn 10 to 15% above the median for their seniority level. SEs at companies with 1:4+ ratios earn 5 to 10% below median. The mechanism is straightforward: lower ratios mean more deal influence, which means clearer revenue attribution, which means a stronger compensation negotiating position.</p>
     <p>Variable compensation is even more affected. At a 1:2 ratio, you can clearly attribute pipeline influence to specific deals. At 1:4+, your contribution is spread across many deals, making it harder to claim credit for specific wins. Companies know this and structure their SE comp plans accordingly: lower-ratio companies offer more aggressive variable plans because the attribution is cleaner.</p>
 
     <h2>Workload Impact</h2>
