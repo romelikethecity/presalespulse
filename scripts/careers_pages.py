@@ -26,7 +26,7 @@ CAREER_GUIDES = [
 
     <h2>The Role Explained</h2>
 
-    <p>At its core, an SE's job is to make the product real for the buyer. That means understanding the customer's technical environment, mapping their pain points to product capabilities, and building demos that show (not tell) how the solution fits their world. SEs don't just present slides. They build things, configure environments, answer hard technical questions, and act as the customer's advocate inside the selling organization.</p>
+    <p>An SE's job is to make the product real for the buyer. That means understanding the customer's technical environment, mapping their pain points to product capabilities, and building demos that show (not tell) how the solution fits their world. SEs don't just present slides. They build things, configure environments, answer hard technical questions, and act as the customer's advocate inside the selling organization.</p>
 
     <p>The SE role exists because modern B2B software is complex. A CRM implementation touches APIs, data pipelines, security protocols, and integration layers that no generalist salesperson can credibly discuss. SEs provide the technical authority that gives buyers confidence to sign six- and seven-figure contracts.</p>
 
@@ -143,7 +143,7 @@ CAREER_GUIDES = [
     <p>Building and delivering compelling demos is the SE's core craft. This goes beyond clicking through screens. Great demo skills include: reading the room and adjusting pace, telling a story that connects features to business outcomes, handling interruptions gracefully, customizing content for different audiences (technical vs executive), and recovering from technical failures without losing credibility. See our <a href="/careers/se-demo-skills/">demo skills guide</a> for what hiring managers evaluate.</p>
 
     <h3>Communication</h3>
-    <p>SEs communicate constantly: with customers, AEs, product teams, and leadership. You need to explain complex technical concepts in business language, write clear follow-up emails, present to groups of 2 to 20 people, and facilitate whiteboarding sessions. Written communication matters as much as verbal. Many deals are won or lost on the quality of follow-up emails and technical documentation.</p>
+    <p>SEs communicate constantly: with customers, AEs, product teams, and leadership. You need to explain complex technical concepts in business language, write clear follow-up emails, present to groups of 2 to 20 people, and lead whiteboarding sessions. Written communication matters as much as verbal. Many deals are won or lost on the quality of follow-up emails and technical documentation.</p>
 
     <h3>Business Acumen</h3>
     <p>Understanding how your customers make money, what their strategic priorities are, and how your product fits their business model separates good SEs from great ones. SEs who can connect technical features to business outcomes (revenue growth, cost reduction, risk mitigation) are dramatically more effective in demos and discovery. This skill compounds over time as you work in a specific industry or vertical.</p>
@@ -258,7 +258,7 @@ CAREER_GUIDES = [
     <p>Here's a practical exercise: pick any software product you use (even a consumer app), and record a 10-minute demo video as if you're presenting it to a potential buyer. Watch the recording. You'll immediately see your habits: filler words, mouse wandering, feature-listing without context. Do this 5 times and you'll improve more than any course could teach you.</p>
 
     <h3>Communication</h3>
-    <p>Written and verbal. SEs write follow-up emails, technical summaries, and RFP responses. They present to groups of 2 to 50 people. They facilitate whiteboarding sessions. Practice all of these. Toastmasters is cliche but effective for presentation skills. For writing, start a technical blog or contribute to internal documentation. The ability to explain complex ideas simply is the most transferable SE skill.</p>
+    <p>Written and verbal. SEs write follow-up emails, technical summaries, and RFP responses. They present to groups of 2 to 50 people. They lead whiteboarding sessions. Practice all of these. Toastmasters is cliche but effective for presentation skills. For writing, start a technical blog or contribute to internal documentation. The ability to explain complex ideas simply is the most transferable SE skill.</p>
 
     <p>Pay special attention to written communication. The follow-up email after a demo or discovery call is often the most influential artifact in a deal. A crisp, well-organized email that summarizes key points, answers open questions, and proposes clear next steps makes you look organized and trustworthy. A rambling, unstructured email undermines the credibility you built on the call.</p>
 
@@ -2504,7 +2504,7 @@ def build_careers_index():
         </a>
         <a href="/careers/chief-solutions-officer/" class="preview-card">
             <h3>Chief Solutions Officer</h3>
-            <p>Rare C-level pre-sales executive role. Comp benchmarks and where the title actually exists.</p>
+            <p>Rare C-level pre-sales executive role. Comp benchmarks and where the title exists.</p>
             <span class="preview-link">Read the guide &rarr;</span>
         </a>
         <a href="/careers/pre-sales-architect/" class="preview-card">

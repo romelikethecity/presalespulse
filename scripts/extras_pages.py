@@ -90,7 +90,7 @@ def build_reports_index():
     <div class="card-grid">
         <div class="card">
             <h3>SE Salary Report 2026</h3>
-            <p>Comprehensive salary data by seniority, location, company stage, and industry. Based on 4,000+ job postings and 327 survey responses. Includes base, variable, and equity breakdowns.</p>
+            <p>Full salary data by seniority, location, company stage, and industry. Based on 4,000+ job postings and 327 survey responses. Includes base, variable, and equity breakdowns.</p>
             <span class="tag">Coming Soon</span>
         </div>
         <div class="card">
