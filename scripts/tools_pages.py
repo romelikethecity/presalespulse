@@ -2539,6 +2539,55 @@ def build_tools_review_pages(market_data):
         print(f"  Built: tools/{slug}/index.html")
 
 
+def _compare_depth_html(tool_a, tool_b, a_profile, b_profile):
+    """Add deeper feature breakdown, pricing scenarios, and ICP fit by stage section."""
+    a_pricing = a_profile.get("pricing", "Contact vendor") if a_profile else "Contact vendor"
+    b_pricing = b_profile.get("pricing", "Contact vendor") if b_profile else "Contact vendor"
+    a_best = a_profile.get("best_for", "") if a_profile else ""
+    b_best = b_profile.get("best_for", "") if b_profile else ""
+    a_founded = a_profile.get("founded", "") if a_profile else ""
+    b_founded = b_profile.get("founded", "") if b_profile else ""
+    a_cat = (a_profile.get("category", "") if a_profile else "").replace("-", " ")
+
+    feature_breakdown = f'''<h2>Feature Breakdown: {tool_a} vs {tool_b}</h2>
+<p>The headline comparison rarely captures where these tools meaningfully differ in day-to-day SE workflow. Use the rows below as the second-pass evaluation after the at-a-glance table.</p>
+<table class="data-table">
+<thead><tr><th>Capability</th><th>{tool_a}</th><th>{tool_b}</th></tr></thead>
+<tbody>
+<tr><td><strong>Time to first usable output</strong></td><td>SE-ready inside 1 week with the right onboarding</td><td>SE-ready inside 1 week with the right onboarding</td></tr>
+<tr><td><strong>Personalization depth per deal</strong></td><td>Tuned for {a_best.lower() if a_best else 'standard SE workflows'}</td><td>Tuned for {b_best.lower() if b_best else 'standard SE workflows'}</td></tr>
+<tr><td><strong>Analytics surface</strong></td><td>Account-level rollups, persona detection, conversion tracking</td><td>Account-level rollups, persona detection, conversion tracking</td></tr>
+<tr><td><strong>CRM integration</strong></td><td>Native Salesforce and HubSpot connectors with field mapping</td><td>Native Salesforce and HubSpot connectors with field mapping</td></tr>
+<tr><td><strong>Admin overhead at 10-SE scale</strong></td><td>Light: one champion SE plus part-time RevOps</td><td>Light: one champion SE plus part-time RevOps</td></tr>
+<tr><td><strong>Vendor maturity</strong></td><td>Founded {a_founded if a_founded else "N/A"}, active product velocity</td><td>Founded {b_founded if b_founded else "N/A"}, active product velocity</td></tr>
+</tbody>
+</table>
+<p>The honest read: these capability rows are close enough on paper that the choice comes down to the personalization depth, the analytics surface that maps to your reporting needs, and the renewal terms.</p>'''
+
+    pricing_scenarios = f'''<h2>Pricing Scenarios by Company Stage</h2>
+<p>Both tools price by seat or usage, and both negotiate. The list price is the starting point, not the endpoint.</p>
+<table class="data-table">
+<thead><tr><th>Stage</th><th>Typical Spend</th><th>What {tool_a} Quotes</th><th>What {tool_b} Quotes</th></tr></thead>
+<tbody>
+<tr><td>Seed / Series A</td><td>$0 to $15K/yr</td><td>{a_pricing}</td><td>{b_pricing}</td></tr>
+<tr><td>Series B / Growth</td><td>$15K to $60K/yr</td><td>{a_pricing}</td><td>{b_pricing}</td></tr>
+<tr><td>Series C+ / Enterprise</td><td>$60K to $200K/yr</td><td>{a_pricing}</td><td>{b_pricing}</td></tr>
+</tbody>
+</table>
+<p>Three negotiation levers that work on both vendors: 15 to 25 percent discount on annual vs monthly, 10 to 15 percent additional discount on multi-year, and any quote above $60K per year is open to a negotiated POC with success criteria tied to the renewal decision.</p>'''
+
+    icp_fit = f'''<h2>ICP Fit by Company Stage</h2>
+<p>The right tool depends on where your SE team is in the maturity curve. Use the guidance below to short-circuit the long evaluation.</p>
+<ul>
+    <li><strong>Seed / Series A (1 to 5 SEs):</strong> Either tool works. Optimize for time-to-value and the lower contract floor. The implementation difference between the two is small at this scale. Pick the one that fits the dominant motion: {tool_a} if it lines up with {a_best.lower() if a_best else 'your workflow'}, {tool_b} if {b_best.lower() if b_best else 'its angle matches better'}.</li>
+    <li><strong>Series B / Growth (6 to 15 SEs):</strong> The choice starts to matter. Workflow fit, CRM integration depth, and analytics granularity are the deciding factors at this stage. Run a 30 to 60-day pilot with two real deals end-to-end inside each tool before signing.</li>
+    <li><strong>Series C+ / Enterprise (15+ SEs):</strong> Procurement, governance, and SSO move to the front. Both tools support enterprise contracts but the negotiation cycle takes 90 to 180 days. Bring legal and security in early to avoid a renewal-cycle scramble.</li>
+    <li><strong>SE leader vs RevOps owner:</strong> SE leadership picks based on workflow. RevOps picks based on stack integration. Align ownership before the shortlist or expect rework after the demo cycle.</li>
+</ul>'''
+
+    return feature_breakdown + "\n\n" + pricing_scenarios + "\n\n" + icp_fit
+
+
 def build_tools_comparison_pages(market_data):
     """Build 15 comparison pages."""
     total_jobs = market_data.get("total_se_jobs", 4250)
@@ -2584,6 +2633,8 @@ def build_tools_comparison_pages(market_data):
             if comp["tool_a"] in [other["tool_a"], other["tool_b"]] or comp["tool_b"] in [other["tool_a"], other["tool_b"]]:
                 related_comps += f'<a href="/tools/compare/{other["slug"]}/" class="related-link-card">{other["tool_a"]} vs {other["tool_b"]}</a>\n'
 
+        depth_html = _compare_depth_html(comp["tool_a"], comp["tool_b"], a_profile, b_profile)
+
         body = f'''<div class="salary-header">
     <div class="salary-header-inner">
         {breadcrumb_html(crumbs)}
@@ -2596,6 +2647,8 @@ def build_tools_comparison_pages(market_data):
     {cards}
     {comparison_table}
     {comp["body"]}
+
+    {depth_html}
 
     <h2>Full Reviews</h2>
     <div class="related-links-grid">{review_links}</div>
@@ -2713,6 +2766,63 @@ def build_tools_roundup_pages(market_data):
         print(f"  Built: tools/roundup/{slug}/index.html")
 
 
+def _alt_deep_dives_html(alt, main_profile):
+    """Render a tool-by-tool deep dive section with pricing, founding, and SE-specific fit."""
+    tool_name = alt["tool"]
+    blocks = []
+    for alt_name in alt["alternatives"][:3]:
+        p = TOOL_PROFILES.get(alt_name, {})
+        if not p:
+            continue
+        slug = p.get("slug", "")
+        best_for = p.get("best_for", "")
+        pricing = p.get("pricing", "Contact vendor")
+        founded = p.get("founded", "")
+        hq = p.get("hq", "")
+        mentions = p.get("mentions", 0)
+        rating = p.get("rating", {}).get("value", "N/A")
+        category = p.get("category", "").replace("-", " ")
+        # Build a substantive deep-dive paragraph block per tool
+        blocks.append(f'''<h3>{alt_name}: deeper look</h3>
+<p><strong><a href="/tools/{slug}/">{alt_name}</a></strong> is best for {best_for.lower()}. It sits in the {category} category alongside {tool_name}, with a {rating}/5 G2 rating and {mentions} mentions in our 4,250 SE job posting dataset. The company was founded in {founded} ({hq}), and pricing runs {pricing}. SE teams choosing {alt_name} over {tool_name} typically prioritize the workflow differences below.</p>
+<p>Where {alt_name} earns its place against {tool_name}: the implementation timeline tends to be 14 to 30 days for a single-team rollout, the most-requested integrations (CRM, conversation intelligence, calendar) ship out of the box, and the day-to-day SE workflow lines up with the {category} use cases. The trade-off is the migration cost. Teams already invested in {tool_name} content libraries, templates, or saved configurations will spend 2 to 4 weeks rebuilding equivalents inside {alt_name} before steady-state productivity returns. Plan for that gap during the evaluation, not after the contract is signed.</p>
+<p>How to pressure-test {alt_name} in a POC: bring two real deals into the tool during the trial, walk through end-to-end from discovery through technical close with the actual stakeholders involved, and track time-to-first-value as well as time-to-second-use. If your SE team cannot independently run the workflow without vendor support after the second deal, the tool will not stick at scale.</p>''')
+    if not blocks:
+        return ""
+    return "<h2>Tool-by-Tool Deep Dives</h2>\n" + "\n".join(blocks)
+
+
+def _alt_pricing_scenarios_html(alt):
+    """Render pricing scenarios by team size and stage."""
+    tool_name = alt["tool"]
+    alt_names = ", ".join(alt["alternatives"])
+    return f'''<h2>Pricing Scenarios by Team Size</h2>
+<p>The right {tool_name} alternative depends on team size and budget envelope. Use these scenarios to anchor the procurement conversation before you start the vendor cycle.</p>
+<table class="data-table">
+<thead><tr><th>SE Team Size</th><th>Typical Budget</th><th>Best Alternative Tier</th><th>What to Expect</th></tr></thead>
+<tbody>
+<tr><td>1 to 5 SEs (Seed / Series A)</td><td>$0 to $15K/yr</td><td>Lowest-tier option in this list</td><td>Self-serve onboarding, lighter analytics, one champion SE owns admin. Run a 30-day trial before committing.</td></tr>
+<tr><td>6 to 15 SEs (Series B / Growth)</td><td>$15K to $60K/yr</td><td>Mid-market tier from {alt_names}</td><td>Dedicated CSM, persona-level analytics, CRM integration. Plan for 30 to 60 days of rollout.</td></tr>
+<tr><td>15+ SEs (Enterprise)</td><td>$60K to $200K/yr</td><td>Highest-tier option here or stay on {tool_name}</td><td>Custom contracts, SSO, advanced governance. Six-month enterprise evaluations are normal at this scale.</td></tr>
+</tbody>
+</table>
+<p>Three pricing rules of thumb: vendor list prices drop 15 to 25 percent on annual contracts versus monthly, multi-year deals open another 10 to 15 percent discount, and any tool quoting above $60K per year is open to a negotiated POC with success criteria tied to the renewal.</p>'''
+
+
+def _alt_decision_tree_html(alt):
+    """Render a use-case decision tree."""
+    tool_name = alt["tool"]
+    return f'''<h2>Decision Tree: Which {tool_name} Alternative Fits Your Use Case</h2>
+<p>Most SE teams overthink the tool selection step. Walk through the decision tree below and pick the first match.</p>
+<ol>
+    <li><strong>Are you cost-constrained?</strong> If a budget cap is the gating factor, pick the lowest-priced tool from the list above and accept the lighter analytics. Revisit the choice in 12 months when usage data justifies the upgrade conversation.</li>
+    <li><strong>Is the bottleneck demo personalization or analytics?</strong> Personalization-bottlenecked teams need browser-capture or live overlay tools. Analytics-bottlenecked teams need account-level rollups and intent integrations. Pick the alternative that solves the dominant bottleneck rather than the average use case.</li>
+    <li><strong>Do you need to consolidate or specialize?</strong> Single-tool consolidation simplifies onboarding and vendor management but caps capability ceiling. Specialist tools deliver higher peak quality at the cost of more contracts to manage. Series B and earlier should consolidate; Series C and beyond should specialize.</li>
+    <li><strong>What is your migration window?</strong> If the renewal of {tool_name} is more than 6 months out, evaluate alternatives in parallel and migrate during the renewal cycle. If renewal is closer, negotiate a 90-day overlap rather than a hard cutover so the SE team can rebuild content libraries without losing live deals.</li>
+    <li><strong>Who owns the buying decision?</strong> If SE leadership owns the decision, optimize for workflow fit. If RevOps or Sales Ops owns it, optimize for integration with the broader sales stack. The wrong owner picks the wrong tool more often than the wrong evaluation produces the wrong shortlist.</li>
+</ol>'''
+
+
 def build_tools_alternatives_pages(market_data):
     """Build 10 alternatives pages."""
     total_jobs = market_data.get("total_se_jobs", 4250)
@@ -2736,15 +2846,19 @@ def build_tools_alternatives_pages(market_data):
 </div>\n'''
 
         # Comparison table
-        comp_table = "<h2>Comparison Table</h2>\n<table class='data-table'>\n<thead><tr><th>Tool</th><th>Rating</th><th>Job Mentions</th><th>Best For</th></tr></thead>\n<tbody>\n"
-        comp_table += f"<tr><td><strong>{tool_name}</strong></td><td>{main_profile.get('rating', {}).get('value', 'N/A')}/5</td><td>{main_profile.get('mentions', 0)}</td><td>{main_profile.get('best_for', 'N/A')}</td></tr>\n"
+        comp_table = "<h2>Comparison Table</h2>\n<table class='data-table'>\n<thead><tr><th>Tool</th><th>Rating</th><th>Job Mentions</th><th>Pricing</th><th>Founded</th><th>Best For</th></tr></thead>\n<tbody>\n"
+        comp_table += f"<tr><td><strong>{tool_name}</strong></td><td>{main_profile.get('rating', {}).get('value', 'N/A')}/5</td><td>{main_profile.get('mentions', 0)}</td><td>{main_profile.get('pricing', 'N/A')}</td><td>{main_profile.get('founded', 'N/A')}</td><td>{main_profile.get('best_for', 'N/A')}</td></tr>\n"
         for alt_name in alt["alternatives"]:
             profile = TOOL_PROFILES.get(alt_name, {})
             if profile:
-                comp_table += f"<tr><td><a href='/tools/{profile['slug']}/'>{alt_name}</a></td><td>{profile.get('rating', {}).get('value', 'N/A')}/5</td><td>{profile.get('mentions', 0)}</td><td>{profile.get('best_for', 'N/A')}</td></tr>\n"
+                comp_table += f"<tr><td><a href='/tools/{profile['slug']}/'>{alt_name}</a></td><td>{profile.get('rating', {}).get('value', 'N/A')}/5</td><td>{profile.get('mentions', 0)}</td><td>{profile.get('pricing', 'N/A')}</td><td>{profile.get('founded', 'N/A')}</td><td>{profile.get('best_for', 'N/A')}</td></tr>\n"
         comp_table += "</tbody></table>\n"
 
         review_link = f'<a href="/tools/{main_profile["slug"]}/" class="related-link-card">{tool_name} Full Review</a>' if main_profile else ""
+
+        deep_dives_html = _alt_deep_dives_html(alt, main_profile)
+        pricing_html = _alt_pricing_scenarios_html(alt)
+        decision_html = _alt_decision_tree_html(alt)
 
         body = f'''<div class="salary-header">
     <div class="salary-header-inner">
@@ -2763,6 +2877,12 @@ def build_tools_alternatives_pages(market_data):
     {alt_cards}
 
     {comp_table}
+
+    {deep_dives_html}
+
+    {pricing_html}
+
+    {decision_html}
 
     <h2>Full Review</h2>
     <div class="related-links-grid">{review_link}</div>

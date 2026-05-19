@@ -2180,6 +2180,10 @@ CAREER_GUIDES = [
         "title": "SE-to-AE Ratio - Why It Matters for Your Career",
         "description": "How SE-to-AE ratios from 1:2 to 1:4 affect workload, compensation, burnout, and deal quality. When to negotiate or push back on your ratio assignment.",
         "body": """
+    <aside class="callout-card" style="background:var(--psp-accent-subtle,#EFF6FF);border-left:4px solid var(--psp-accent,#1E3A5F);padding:1rem 1.25rem;margin:0 0 1.5rem 0;border-radius:0.5rem">
+        <p style="margin:0"><strong>Looking for the data?</strong> For the full benchmarks dataset (industry medians, deal-size correlations, and year-over-year shifts), see our <a href="/insights/se-to-ae-ratio-benchmarks/">SE-to-AE Ratio Benchmarks insight</a>. This page covers the career impact of working at each ratio.</p>
+    </aside>
+
     <p>The SE-to-AE ratio is one of the most important numbers in your career as an SE, and most SEs don't think about it until they're overwhelmed. The ratio determines how many AEs you support, which determines your deal volume, meeting load, variable compensation opportunity, and burnout risk. Understanding how ratios work and when to push back can change your day-to-day experience and long-term earnings.</p>
 
     <h2>Typical Ratios by Company Type</h2>

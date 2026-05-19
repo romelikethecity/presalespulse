@@ -21,6 +21,50 @@ def slugify(text):
     return text.strip('-')
 
 
+def _pad_meta_description(description, term, target_min=145, target_max=158):
+    """Pad short glossary meta descriptions so they hit the 140+ char SEO target.
+
+    Appends a short, SE-specific use-case fragment rather than generic filler.
+    Picks the longest snippet that still fits inside target_max, then keeps
+    adding if still under target_min.
+    """
+    if len(description) >= target_min:
+        return description
+    base = description.rstrip()
+    if not base.endswith('.'):
+        base = base + '.'
+    # Snippets sorted longest-first so we prefer single-snippet pads when possible.
+    snippets = [
+        " A core concept SEs use during deal qualification and technical close.",
+        " Used by SE teams across discovery, demo, and POC work.",
+        " Common in B2B SaaS pre-sales workflows.",
+        " For solutions engineers and SE managers.",
+        " Pre-sales practitioner definition.",
+        " Used across pre-sales workflows.",
+        " Used by SE teams in discovery and POC.",
+        " SE practitioner definition.",
+        " Glossary for SE teams.",
+        " For SE teams.",
+        " SE definition.",
+    ]
+    out = base
+    used = set()
+    # Multi-pass: prefer the longest snippet that fits; keep adding until we hit target_min or run out.
+    while len(out) < target_min:
+        best = None
+        for snip in snippets:
+            if snip in used:
+                continue
+            if len(out) + len(snip) <= target_max:
+                if best is None or len(snip) > len(best):
+                    best = snip
+        if best is None:
+            break
+        out = out + best
+        used.add(best)
+    return out
+
+
 # ---------------------------------------------------------------------------
 # Category groupings (for index page)
 # ---------------------------------------------------------------------------
@@ -356,14 +400,14 @@ GLOSSARY_TERMS = [
         "term": "Pre-Sales",
         "slug": "pre-sales",
         "definition": "The umbrella term for all sales activities that happen before contract signing, where SEs serve as the primary technical resource.",
-        "body": """<p>Pre-sales covers everything from the first <a href="/glossary/discovery-call/">discovery call</a> to the moment ink hits the contract. It includes demos, <a href="/glossary/proof-of-concept/">POCs</a>, <a href="/glossary/request-for-proposal/">RFP</a> responses, <a href="/glossary/solution-architecture/">solution architecture</a>, competitive positioning, and the <a href="/glossary/technical-close/">technical close</a>. SEs are the backbone of the pre-sales function at most B2B software companies.</p>
+        "body": """<p>Pre-sales covers everything from the first <a href="/glossary/discovery-call/">discovery call</a> to the moment ink hits the contract. It includes demos, <a href="/glossary/proof-of-concept/">POCs</a>, <a href="/glossary/request-for-proposal/">RFP</a> responses, <a href="/glossary/solution-architecture/">solution architecture</a>, competitive positioning, and the <a href="/glossary/technical-close/">technical close</a>. SEs are the backbone of the pre-sales function at most B2B software companies. For the role detail, see our <a href="/careers/what-is-solutions-engineer/">Solutions Engineer career guide</a> and the <a href="/careers/solutions-engineer-vs-sales-engineer/">SE vs Sales Engineer comparison</a>.</p>
 
 <p>The pre-sales motion varies by deal size and complexity. A $10K self-serve deal might involve a single demo. A $500K enterprise deal might involve months of technical evaluation with multiple stakeholders across the <a href="/glossary/buying-committee/">buying committee</a>. SEs adapt their approach to the deal, not the other way around.</p>
 
 <h2>Why It Matters for SEs</h2>
 <p>Understanding where pre-sales fits in the broader sales organization helps SEs communicate their value. Pre-sales is a revenue function. Every dollar of new business passes through the SE before it closes. SEs who understand this framing negotiate better comp, justify headcount requests, and earn a seat at the strategy table.</p>
 
-<p>Pre-sales is also the career identity. Whether your title is Solutions Engineer, Sales Engineer, <a href="/glossary/solution-consulting/">Solutions Consultant</a>, or Pre-Sales Engineer, you work in pre-sales. The function is the same even when the title changes between companies.</p>
+<p>Pre-sales is also the career identity. Whether your title is Solutions Engineer, Sales Engineer, <a href="/glossary/solution-consulting/">Solutions Consultant</a>, or Pre-Sales Engineer, you work in pre-sales. The function is the same even when the title changes between companies. See the <a href="/careers/solutions-engineer-vs-solutions-architect/">SE vs Solutions Architect</a> and <a href="/careers/solutions-engineer-vs-tam/">SE vs TAM</a> guides for adjacent-role boundaries.</p>
 
 <h2>How SEs Use This</h2>
 <p>Frame your work in pre-sales terms when talking to leadership. "I run pre-sales technical evaluations for enterprise accounts" is clearer to executives than listing individual activities. Track your pre-sales metrics: <a href="/glossary/demo-to-close-rate/">demo-to-close rate</a>, technical win rate, average deal cycle, and POC success rate. These numbers tell the story of your impact.</p>
@@ -756,7 +800,7 @@ GLOSSARY_TERMS = [
 <h2>How SEs Use This</h2>
 <p>When job searching, search for all common title variants: Solutions Engineer, Solution Consultant, Sales Engineer, Pre-Sales Engineer, Pre-Sales Consultant, Technical Consultant, and <a href="/glossary/pre-sales/">Pre-Sales</a> Specialist. Set up alerts for all of them. The company you want may use a title you are not searching for.</p>
 
-<p>On your resume and LinkedIn, include the most common variant (Solutions Engineer) as a secondary title or in your summary, even if your official title is different. This ensures recruiters searching for either term find your profile. The <a href="/glossary/pre-sales/">pre-sales</a> community is small enough that everyone understands the title equivalence.</p>""",
+<p>On your resume and LinkedIn, include the most common variant (Solutions Engineer) as a secondary title or in your summary, even if your official title is different. This ensures recruiters searching for either term find your profile. The <a href="/glossary/pre-sales/">pre-sales</a> community is small enough that everyone understands the title equivalence. For the full role breakdown across each variant, see our <a href="/careers/what-is-solutions-engineer/">Solutions Engineer career guide</a>.</p>""",
         "faq": [
             ("Is Solution Consultant the same as Solutions Engineer?", "Yes. The job function is identical: pre-sales technical selling including demos, POCs, RFPs, and technical close. Salesforce and several enterprise vendors prefer 'Solution Consultant.' Most other companies use 'Solutions Engineer' or 'Sales Engineer.'"),
             ("Does the title affect compensation?", "Not directly. Compensation is driven by the company, the market, and the deal complexity, not the title. A Solution Consultant at Salesforce and a Solutions Engineer at a similar-sized company earn comparable compensation for comparable work."),
@@ -1181,7 +1225,13 @@ def build_glossary_term(t):
     if len(title) > 62:
         title = f"{term} - SE Glossary"
 
-    description = definition[:155].rstrip('.') + '.' if len(definition) > 155 else definition
+    # Truncate to leave headroom for the padding pass; otherwise short-but-not-tiny
+    # definitions stay below the 140-char SEO target with no room to add a snippet.
+    if len(definition) > 130:
+        description = definition[:130].rstrip('.,;: ') + '.'
+    else:
+        description = definition
+    description = _pad_meta_description(description, term)
 
     crumbs = [("Home", "/"), ("Glossary", "/glossary/"), (term, None)]
 

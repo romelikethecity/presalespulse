@@ -82,7 +82,18 @@ REPORT_CITATION = "PreSales Pulse Market Analysis 2026 (n=327)"
 
 
 def source_citation_html():
-    """Visible source citation block for salary pages."""
+    """Visible source citation block for salary pages.
+
+    Short one-sentence form pointing readers at the full methodology page so
+    the same 250-char block does not repeat verbatim across every salary page.
+    """
+    return f'''<div class="source-citation">
+    <p><strong>Source:</strong> {REPORT_CITATION}. See our <a href="/salary/methodology/">full methodology</a>.</p>
+</div>'''
+
+
+def source_citation_methodology_full_html():
+    """Long-form citation used only on /salary/methodology/ itself."""
     return f'''<div class="source-citation">
     <p><strong>Source:</strong> {REPORT_CITATION}. Salary data combines analysis of 4,250+ Solutions Engineer job postings with compensation survey data from verified SE professionals across 15 US markets. Cross-referenced with data from <a href="https://www.bls.gov/oes/" target="_blank" rel="noopener">Bureau of Labor Statistics</a> and <a href="https://www.levels.fyi" target="_blank" rel="noopener">Levels.fyi</a>.</p>
 </div>'''
@@ -2149,7 +2160,7 @@ def build_salary_methodology():
 {faq_html(faq_pairs)}
 </div>
 '''
-    body += source_citation_html()
+    body += source_citation_methodology_full_html()
     body += newsletter_cta_html()
     extra_head = get_breadcrumb_schema(crumbs) + get_faq_schema(faq_pairs)
 

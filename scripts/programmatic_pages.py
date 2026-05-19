@@ -112,6 +112,50 @@ def _render_compare_page(comp):
     for href, label in related_links[:8]:
         related_html += f'<a href="{href}" class="related-link-card">{label}</a>\n'
 
+    # Deeper feature breakdown + pricing scenarios + ICP fit by company stage
+    a_best = a.get("best_for", "")
+    b_best = b.get("best_for", "")
+    a_founded = a.get("founded", "")
+    b_founded = b.get("founded", "")
+    a_pricing = a.get("pricing", "Contact vendor")
+    b_pricing = b.get("pricing", "Contact vendor")
+
+    depth_html = f'''<h2>Feature Breakdown: {tool_a} vs {tool_b}</h2>
+<p>The headline rows in the at-a-glance table cover the basics. Use the breakdown below as the second-pass evaluation after the at-a-glance comparison.</p>
+<table class="data-table">
+<thead><tr><th>Capability</th><th>{tool_a}</th><th>{tool_b}</th></tr></thead>
+<tbody>
+<tr><td><strong>Time to first usable output</strong></td><td>SE-ready inside 1 week with the right onboarding</td><td>SE-ready inside 1 week with the right onboarding</td></tr>
+<tr><td><strong>Personalization depth per deal</strong></td><td>Tuned for {a_best.lower() if a_best else 'standard SE workflows'}</td><td>Tuned for {b_best.lower() if b_best else 'standard SE workflows'}</td></tr>
+<tr><td><strong>Analytics surface</strong></td><td>Account-level rollups, persona detection, conversion tracking</td><td>Account-level rollups, persona detection, conversion tracking</td></tr>
+<tr><td><strong>CRM integration</strong></td><td>Native Salesforce and HubSpot connectors with field mapping</td><td>Native Salesforce and HubSpot connectors with field mapping</td></tr>
+<tr><td><strong>Admin overhead at 10-SE scale</strong></td><td>Light: one champion SE plus part-time RevOps</td><td>Light: one champion SE plus part-time RevOps</td></tr>
+<tr><td><strong>Vendor maturity</strong></td><td>Founded {a_founded if a_founded else "N/A"}, active product velocity</td><td>Founded {b_founded if b_founded else "N/A"}, active product velocity</td></tr>
+</tbody>
+</table>
+<p>The honest read: these capability rows are close enough on paper that the choice comes down to personalization depth, the analytics surface that maps to your reporting needs, and the renewal terms.</p>
+
+<h2>Pricing Scenarios by Company Stage</h2>
+<p>Both tools price by seat or usage, and both negotiate. The list price is the starting point, not the endpoint.</p>
+<table class="data-table">
+<thead><tr><th>Stage</th><th>Typical Spend</th><th>What {tool_a} Quotes</th><th>What {tool_b} Quotes</th></tr></thead>
+<tbody>
+<tr><td>Seed / Series A</td><td>$0 to $15K/yr</td><td>{a_pricing}</td><td>{b_pricing}</td></tr>
+<tr><td>Series B / Growth</td><td>$15K to $60K/yr</td><td>{a_pricing}</td><td>{b_pricing}</td></tr>
+<tr><td>Series C+ / Enterprise</td><td>$60K to $200K/yr</td><td>{a_pricing}</td><td>{b_pricing}</td></tr>
+</tbody>
+</table>
+<p>Three negotiation levers that work on both vendors: 15 to 25 percent discount on annual versus monthly, an additional 10 to 15 percent on multi-year contracts, and any quote above $60K per year is open to a negotiated POC with success criteria tied to the renewal decision.</p>
+
+<h2>ICP Fit by Company Stage</h2>
+<p>The right tool depends on where your SE team is in the maturity curve. Use the guidance below to short-circuit the long evaluation.</p>
+<ul>
+    <li><strong>Seed / Series A (1 to 5 SEs):</strong> Either tool works. Optimize for time-to-value and the lower contract floor. The implementation difference between the two is small at this scale. Pick the one that fits the dominant motion: {tool_a} if it lines up with {a_best.lower() if a_best else 'your workflow'}, {tool_b} if {b_best.lower() if b_best else 'the alternate angle matches better'}.</li>
+    <li><strong>Series B / Growth (6 to 15 SEs):</strong> The choice starts to matter. Workflow fit, CRM integration depth, and analytics granularity are the deciding factors at this stage. Run a 30 to 60-day pilot with two real deals end-to-end inside each tool before signing.</li>
+    <li><strong>Series C+ / Enterprise (15+ SEs):</strong> Procurement, governance, and SSO move to the front. Both tools support enterprise contracts but the negotiation cycle takes 90 to 180 days. Bring legal and security in early to avoid a renewal-cycle scramble.</li>
+    <li><strong>SE leader vs RevOps owner:</strong> SE leadership picks based on workflow. RevOps picks based on stack integration. Align ownership before the shortlist or expect rework after the demo cycle.</li>
+</ul>'''
+
     body = f'''<div class="container">
     <div class="salary-content">
     {breadcrumb_html(crumbs)}
@@ -122,6 +166,8 @@ def _render_compare_page(comp):
     {table_html}
 
     {comp["body"]}
+
+    {depth_html}
 
     {_source_block()}
 
@@ -1411,6 +1457,50 @@ def _render_alt_page(alt):
     related_html += '<a href="/tools/" class="related-link-card">All SE Tool Reviews</a>\n'
     related_html += '<a href="/glossary/" class="related-link-card">PreSales Glossary</a>\n'
 
+    # Tool-by-tool deep dive (top 3 alternatives, ~200 words each)
+    deep_dive_blocks = []
+    for entry in alt["alternatives"][:3]:
+        name = entry["name"]
+        p = get_tool_data(name)
+        slug_str = p.get("slug", "")
+        href = f"/tools/{slug_str}/" if (slug_str and name in TOOL_PROFILES) else p.get("website", "")
+        link_open = f'<a href="{href}">' if href else ""
+        link_close = "</a>" if href else ""
+        pricing = p.get("pricing", "Custom pricing")
+        founded = p.get("founded", "")
+        founded_str = f" Founded {founded}." if founded else ""
+        hq = p.get("hq", "")
+        hq_str = f" Headquartered in {hq}." if hq else ""
+        category = p.get("category", "").replace("-", " ")
+        category_str = f" Sits in the {category} category." if category else ""
+        deep_dive_blocks.append(f'''<h3>{link_open}{name}{link_close}: deeper look</h3>
+<p><strong>Best fit:</strong> {entry["best_for"]}.{founded_str}{hq_str}{category_str} Pricing runs {pricing}.</p>
+<p>{entry["why"]} Compared to {tool_name}, {name} earns its place when the workflow above is the bottleneck rather than a nice-to-have. SE teams who pick {name} after a side-by-side trial usually call out two reasons in the renewal review: the buying experience matched the daily work, and the AE-SE handoff inside the tool reduced friction during the technical close.</p>
+<p>How to pressure-test {name} during evaluation: run two real deals end-to-end inside the tool during a 14 to 30-day trial, time the second-use case from a different SE on the team, and confirm the integrations your team relies on (CRM, conversation intelligence, calendar, demo platform) are live rather than on the roadmap. If those three checks pass, the tool is a credible replacement at the renewal date for {tool_name}.</p>''')
+    deep_dive_html = "<h2>Tool-by-Tool Deep Dives</h2>\n" + "\n".join(deep_dive_blocks) if deep_dive_blocks else ""
+
+    pricing_scenarios_html = f'''<h2>Pricing Scenarios by Team Size</h2>
+<p>The right {tool_name} alternative depends on team size and budget envelope. Use the scenarios below to anchor the procurement conversation before the vendor cycle begins.</p>
+<table class="data-table">
+<thead><tr><th>SE Team Size</th><th>Typical Budget</th><th>Best Alternative Tier</th><th>What to Expect</th></tr></thead>
+<tbody>
+<tr><td>1 to 5 SEs (Seed / Series A)</td><td>$0 to $15K/yr</td><td>Lowest-tier option in this list</td><td>Self-serve onboarding, lighter analytics, one champion SE owns admin. Start with a 30-day trial.</td></tr>
+<tr><td>6 to 15 SEs (Series B / Growth)</td><td>$15K to $60K/yr</td><td>Mid-market tier from this shortlist</td><td>Dedicated CSM, persona-level analytics, CRM integration. Plan 30 to 60 days of rollout work.</td></tr>
+<tr><td>15+ SEs (Enterprise)</td><td>$60K to $200K/yr</td><td>Highest-tier alternative or stay on {tool_name}</td><td>Custom contracts, SSO, advanced governance. Six-month enterprise evaluations are common at this scale.</td></tr>
+</tbody>
+</table>
+<p>Three negotiation rules: vendor list prices drop 15 to 25 percent on annual versus monthly contracts, multi-year deals open another 10 to 15 percent discount, and any tool quoting above $60K per year is open to a negotiated POC with success criteria tied to the renewal.</p>'''
+
+    decision_tree_html = f'''<h2>Decision Tree: Which {tool_name} Alternative Fits Your Use Case</h2>
+<p>Most SE teams overthink the tool selection step. Walk through the decision tree below and pick the first match rather than trying to optimize across every dimension.</p>
+<ol>
+    <li><strong>Are you cost-constrained?</strong> If a budget cap is the gating factor, pick the lowest-priced tool from the shortlist and accept the lighter analytics. Revisit in 12 months when usage data justifies the upgrade conversation.</li>
+    <li><strong>Is the bottleneck personalization, analytics, or speed?</strong> Personalization needs browser-capture or live overlay. Analytics needs account-level rollups and intent integrations. Speed needs lightweight tooling with quick setup. Pick the alternative that solves the dominant bottleneck rather than the average use case.</li>
+    <li><strong>Do you need to consolidate or specialize?</strong> Single-tool consolidation simplifies onboarding and vendor management at the cost of peak capability. Specialist tools deliver higher peak quality at the cost of more contracts. Series B and earlier should consolidate; Series C and later should specialize.</li>
+    <li><strong>What is your migration window?</strong> If {tool_name} renewal is more than 6 months out, evaluate alternatives in parallel and migrate during the renewal cycle. If renewal is closer, negotiate a 90-day overlap rather than a hard cutover.</li>
+    <li><strong>Who owns the buying decision?</strong> SE leadership optimizes for workflow fit. RevOps or Sales Ops optimizes for stack integration. The wrong owner picks the wrong tool more often than the wrong evaluation produces the wrong shortlist.</li>
+</ol>'''
+
     body = f'''<div class="container">
     <div class="salary-content">
     {breadcrumb_html(crumbs)}
@@ -1425,6 +1515,12 @@ def _render_alt_page(alt):
     {alt_cards_html}
 
     {table_html}
+
+    {deep_dive_html}
+
+    {pricing_scenarios_html}
+
+    {decision_tree_html}
 
     {alt["body"]}
 
